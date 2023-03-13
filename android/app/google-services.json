@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778240247267",
+    "project_id": "peptask-fb4cd",
+    "storage_bucket": "peptask-fb4cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778240247267:android:52823fdfa92d7a099c4cd6",
+        "android_client_info": {
+          "package_name": "com.example.peptask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778240247267-s3ltg76leb474pr0e8u9i9tkcv4mtkok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwsNgFhwNWpczhw3VCFKG_ej3MF8W3Kms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778240247267-s3ltg76leb474pr0e8u9i9tkcv4mtkok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
