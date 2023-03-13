@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class IconsWidget extends StatelessWidget {
-  const IconsWidget({Key? key}) : super(key: key);
+class LogoWidget extends StatelessWidget {
+  final String path;
+  const LogoWidget({
+    super.key, required this.path,
+  });
 
   @override
   Widget build(BuildContext context) {
-return Container();
-    }
+    return SizedBox(
+      child: Image.asset(path),
+    );
+  }
 }

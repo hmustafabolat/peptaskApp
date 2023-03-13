@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:peptask/view/register_page.dart';
 
 import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
+import '../widgets/icons/icons.dart';
 
 class UserLoginPage extends StatefulWidget {
   const UserLoginPage({Key? key}) : super(key: key);
@@ -33,14 +35,75 @@ class _UserLoginPageState extends State<UserLoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _emailTextField(),
-                      _passwordTextField(),
+                      LogoWidget(path: "assets/images/logo_icon.png",),
+                      LogoWidget(path: "assets/images/pepteam_logo.png"),
+                      Text("İzin Portalı"),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+                        child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromRGBO(208, 213, 221, 1),
+                              ),
+                            ),
+                            labelText: "Email",
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromRGBO(208, 213, 221, 1),
+                              ),
+                            ),
+                            labelText: "Şifre",
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Şifremi Unuttum",
+                            style: TextStyle(
+                                color: Color.fromRGBO(127, 86, 217, 1),
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      //_emailTextField(),
+                      //_passwordTextField(),
                       _signInButton(),
-                      _goRegisterPageButton(),
+                      //_goRegisterPageButton(),
+                      Text.rich(TextSpan(
+                        text: "Hesabınız yok mu? ",
+                        style: const TextStyle(
+                            color: Color.fromRGBO(102, 112, 133, 1),
+                            fontSize: 16),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: "Kaydol",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(127, 86, 217, 1),
+                                  decoration: TextDecoration.underline),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => RegisterPage()));
+                                }),
+                        ],
+                      )),
                       SizedBox(
                         height: 0.01.sh,
                       ),
-
                     ],
                   ),
                 ),
@@ -168,3 +231,4 @@ class _UserLoginPageState extends State<UserLoginPage> {
         ));
   }
 }
+
