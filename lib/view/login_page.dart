@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:peptask/view/register_page.dart';
-
+import 'package:peptask/widgets/buttons/button.dart';
 import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
 import '../widgets/icons/icons.dart';
@@ -35,75 +35,28 @@ class _UserLoginPageState extends State<UserLoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      LogoWidget(path: "assets/images/logo_icon.png",),
+                      LogoWidget(
+                        path: "assets/images/logo_icon.png",
+                      ),
                       LogoWidget(path: "assets/images/pepteam_logo.png"),
                       Text("İzin Portalı"),
-                      Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 10),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromRGBO(208, 213, 221, 1),
-                              ),
-                            ),
-                            labelText: "Email",
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color.fromRGBO(208, 213, 221, 1),
-                              ),
-                            ),
-                            labelText: "Şifre",
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Şifremi Unuttum",
-                            style: TextStyle(
-                                color: Color.fromRGBO(127, 86, 217, 1),
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      //_emailTextField(),
-                      //_passwordTextField(),
-                      _signInButton(),
-                      //_goRegisterPageButton(),
-                      Text.rich(TextSpan(
-                        text: "Hesabınız yok mu? ",
-                        style: const TextStyle(
-                            color: Color.fromRGBO(102, 112, 133, 1),
-                            fontSize: 16),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: "Kaydol",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Color.fromRGBO(127, 86, 217, 1),
-                                  decoration: TextDecoration.underline),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => RegisterPage()));
-                                }),
-                        ],
-                      )),
-                      SizedBox(
-                        height: 0.01.sh,
-                      ),
+                      buildTextFormFieldEmail(),
+                      buildTextFormFieldPassword(),
+                      ForgotPassword(nullText: "Şifremi Unuttum"),
+                      MainButtonPurple(text: "Giriş Yap", onPressed: () {
+                        () async {
+                          if (_globalKey.currentState!.validate()) {
+                            _globalKey.currentState!.save();
+
+                            UserModel userModel =
+                            UserModel(email: email, password: password);
+
+                            await _viewModel.signIn(userModel);
+                          }
+                        };
+                      },),
+                      SignUpButton(lightText: "Hesabınız yok mu?  ", darkText: "Kaydol"),
+
                     ],
                   ),
                 ),
@@ -113,122 +66,49 @@ class _UserLoginPageState extends State<UserLoginPage> {
     );
   }
 
-  InkWell _goRegisterPageButton() {
-    return InkWell(
-      onTap: () {
-        Get.to(() => RegisterPage());
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Container(
-            height: 0.002.sh,
-            width: 0.2.sw,
-            color: Colors.black,
-          ),
-          Text(
-            "Kayıt ol",
-            style: TextStyle(color: Colors.black),
-          ),
-          Container(
-            height: 0.002.sh,
-            width: 0.2.sw,
-            color: Colors.black,
-          ),
-        ],
-      ),
-    );
-  }
-
-  InkWell _signInButton() {
-    return InkWell(
-      onTap: () async {
-        if (_globalKey.currentState!.validate()) {
-          _globalKey.currentState!.save();
-
-          UserModel userModel = UserModel(email: email, password: password);
-
-          await _viewModel.signIn(userModel);
-        }
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-            color: Color.fromRGBO(127, 86, 217, 1),
-            //color: colorPrimaryShade,
-            borderRadius: BorderRadius.all(Radius.circular(8))),
-        child: Center(
-            child: Text(
-          "Giriş yap",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-        )),
-      ),
-    );
-  }
-
-  TextFormField _passwordTextField() {
+  TextFormField buildTextFormFieldPassword() {
     return TextFormField(
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          password = value;
-        },
-        cursorColor: Colors.black,
-        obscureText: true,
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.vpn_key,
-            color: Colors.black,
-          ),
-          hintText: 'Parola',
-          prefixText: ' ',
-          hintStyle: TextStyle(
-            color: Colors.black,
-          ),
-          focusColor: Colors.black,
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-          )),
-          enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-          )),
-        ));
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                        onSaved: (value) {
+                          password = value;
+                        },
+                        cursorColor: Colors.black,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromRGBO(208, 213, 221, 1),
+                            ),
+                          ),
+                          hintText: 'Parola',
+                          focusColor: Colors.black,
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: Colors.black,
+                          )),
+                        ));
   }
 
-  TextFormField _emailTextField() {
+  TextFormField buildTextFormFieldEmail() {
     return TextFormField(
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          email = value;
-        },
-        cursorColor: Colors.black,
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.mail,
-            color: Colors.black,
-          ),
-          hintText: 'E-Mail',
-          prefixText: ' ',
-          hintStyle: TextStyle(color: Colors.black, letterSpacing: 1),
-          focusColor: Colors.black,
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-          )),
-          enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(
-            color: Colors.black,
-          )),
-        ));
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                      onSaved: (value) {
+                        email = value;
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(208, 213, 221, 1),
+                              width: 4),
+                        ),
+                        hintText: "Email Girin",
+                      ),
+                    );
   }
 }
-
