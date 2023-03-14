@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peptask/view/login_page.dart';
+import 'package:peptask/view/register_page.dart';
 import 'package:peptask/viewmodel/auth_viewmodel.dart';
 
 class LandingPage extends StatelessWidget {

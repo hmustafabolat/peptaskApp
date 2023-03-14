@@ -1,18 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../view/register_page.dart';
-class MainButtonPurple extends StatelessWidget {
+class PurpleMainButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const MainButtonPurple({required this.text, required this.onPressed});
+  const PurpleMainButton({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Text(text),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 37),
+        child: Text(text),
+      ),
       style: ElevatedButton.styleFrom( 
         primary: Color.fromRGBO(127, 86, 217, 1),
         onPrimary: Colors.white,
@@ -25,9 +30,9 @@ class MainButtonPurple extends StatelessWidget {
   }
 }
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPasswordButton extends StatelessWidget {
   final String nullText;
-  const ForgotPassword({Key? key, required this.nullText}) : super(key: key);
+  const ForgotPasswordButton({Key? key, required this.nullText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +50,10 @@ class ForgotPassword extends StatelessWidget {
   }
 }
 
-class SignUpButton extends StatelessWidget {
+class SignInButton extends StatelessWidget {
   final String lightText;
   final String darkText;
-  const SignUpButton({Key? key, required this.lightText, required this.darkText}) : super(key: key);
+  const SignInButton({Key? key, required this.lightText, required this.darkText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,4 +79,19 @@ class SignUpButton extends StatelessWidget {
   }
 }
 
+class BackButton extends StatelessWidget {
+  const BackButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => Get.back(),
+      icon: Icon(
+        Icons.arrow_back_ios_outlined,
+        color: Colors.white,
+        size: 26,
+      ),
+    );
+  }
+}
 

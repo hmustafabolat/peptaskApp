@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class LogoWidget extends StatelessWidget {
+
+class AppLogo extends StatelessWidget {
   final String path;
-  const LogoWidget({
+  const AppLogo({
     super.key, required this.path,
   });
 

@@ -1,8 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:peptask/view/register_page.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
@@ -35,15 +31,15 @@ class _UserLoginPageState extends State<UserLoginPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      LogoWidget(
+                      AppLogo(
                         path: "assets/images/logo_icon.png",
                       ),
-                      LogoWidget(path: "assets/images/pepteam_logo.png"),
+                      AppLogo(path: "assets/images/pepteam_logo.png"),
                       Text("İzin Portalı"),
                       buildTextFormFieldEmail(),
                       buildTextFormFieldPassword(),
-                      ForgotPassword(nullText: "Şifremi Unuttum"),
-                      MainButtonPurple(text: "Giriş Yap", onPressed: () {
+                      ForgotPasswordButton(nullText: "Şifremi Unuttum"),
+                      PurpleMainButton(text: "Giriş Yap", onPressed: () {
                         () async {
                           if (_globalKey.currentState!.validate()) {
                             _globalKey.currentState!.save();
@@ -55,7 +51,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           }
                         };
                       },),
-                      SignUpButton(lightText: "Hesabınız yok mu?  ", darkText: "Kaydol"),
+                      SignInButton(lightText: "Hesabınız yok mu?  ", darkText: "Kaydol"),
 
                     ],
                   ),
@@ -84,9 +80,9 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           ),
                           hintText: 'Parola',
                           focusColor: Colors.black,
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                            color: Colors.black,
+                            color: Color.fromRGBO(208, 213, 221, 1),
                           )),
                         ));
   }
@@ -99,6 +95,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                       onSaved: (value) {
                         email = value;
                       },
+        
                       cursorColor: Colors.black,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -106,6 +103,8 @@ class _UserLoginPageState extends State<UserLoginPage> {
                           borderSide: BorderSide(
                               color: Color.fromRGBO(208, 213, 221, 1),
                               width: 4),
+                        ),
+                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromRGBO(208, 213, 221, 1))
                         ),
                         hintText: "Email Girin",
                       ),
