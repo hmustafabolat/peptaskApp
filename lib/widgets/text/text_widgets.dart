@@ -11,8 +11,8 @@ class TextWidget extends StatelessWidget {
   }
 }
 
-class BackTextWidget extends StatelessWidget {
-  const BackTextWidget({Key? key}) : super(key: key);
+class RegisterPageSignUpText extends StatelessWidget {
+  const RegisterPageSignUpText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 BackLogo(),
                 Padding(
                   padding: EdgeInsets.only(top: 40, left: 15).r,
-                  child: BackTextWidget(),
+                  child: RegisterPageSignUpText(),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 90, left: 17, right: 17).r,

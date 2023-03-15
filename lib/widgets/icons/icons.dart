@@ -16,13 +16,3 @@ class AppLogo extends StatelessWidget {
     );
   }
 }
-
-class BackLogo extends StatelessWidget {
-  const BackLogo({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(onPressed: () => Get.back(), icon: Icon(Icons.arrow_back));
-  }
-}
-
