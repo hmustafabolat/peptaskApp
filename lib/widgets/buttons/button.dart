@@ -2,13 +2,23 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:peptask/model/user_model.dart';
+import 'package:peptask/view/login_page.dart';
 
 import '../../view/register_page.dart';
+import '../../viewmodel/auth_viewmodel.dart';
+
+//Uygulama Login ve Register sayfalarında kullanılan "Mor" renkli büyük butonlar.
 class PurpleMainButton extends StatelessWidget {
+  final _globalKey = GlobalKey<FormState>();
+  String? email, password;
+
+  final AuthViewModel _viewModel = Get.find();
+
   final String text;
   final VoidCallback onPressed;
 
-  const PurpleMainButton({required this.text, required this.onPressed});
+  PurpleMainButton({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +28,7 @@ class PurpleMainButton extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 37),
         child: Text(text),
       ),
-      style: ElevatedButton.styleFrom( 
+      style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
         onPrimary: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 120, vertical: 20),
@@ -29,10 +39,12 @@ class PurpleMainButton extends StatelessWidget {
     );
   }
 }
-
+//Şifremi unuttum butonu fonksiyon eklenmedi!!!
 class ForgotPasswordButton extends StatelessWidget {
   final String nullText;
-  const ForgotPasswordButton({Key? key, required this.nullText}) : super(key: key);
+
+  const ForgotPasswordButton({Key? key, required this.nullText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,36 +61,67 @@ class ForgotPasswordButton extends StatelessWidget {
     );
   }
 }
+//Login sayfasında ki "Kaydol" butonu.
+class SignUpButton extends StatelessWidget {
+  final String lightTextSignUp;
+  final String darkTextSignUp;
 
-class SignInButton extends StatelessWidget {
-  final String lightText;
-  final String darkText;
-  const SignInButton({Key? key, required this.lightText, required this.darkText}) : super(key: key);
+  const SignUpButton(
+      {Key? key, required this.lightTextSignUp, required this.darkTextSignUp})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text.rich(TextSpan(
-      text: lightText,
+      text: lightTextSignUp,
       style: const TextStyle(
-          color: Color.fromRGBO(102, 112, 133, 1),
-          fontSize: 16),
+          color: Color.fromRGBO(102, 112, 133, 1), fontSize: 16),
       children: <TextSpan>[
         TextSpan(
-            text: darkText,
+            text: darkTextSignUp,
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Color.fromRGBO(127, 86, 217, 1),
                 decoration: TextDecoration.underline),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => RegisterPage()));
+                Get.to(RegisterPage());
               }),
       ],
     ));
   }
 }
+//Register sayfasında ki "Giriş Yap" butonu.
+class SignInButton extends StatelessWidget {
+  final String lightTextSignIn;
+  final String dartTextSignIn;
 
+  SignInButton(
+      {Key? key, required this.lightTextSignIn, required this.dartTextSignIn})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text.rich(TextSpan(
+      text: lightTextSignIn,
+      style: const TextStyle(
+          color: Color.fromRGBO(102, 112, 133, 1), fontSize: 16),
+      children: <TextSpan>[
+        TextSpan(
+            text: dartTextSignIn,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(127, 86, 217, 1),
+                decoration: TextDecoration.underline),
+            recognizer: TapGestureRecognizer()
+              ..onTap = (){
+              Get.to(UserLoginPage());
+              })
+      ],
+    ));
+  }
+}
+//Uygulama içerisinde kullanılacak "Back Icon" butonudur.
 class BackButton extends StatelessWidget {
   const BackButton({Key? key}) : super(key: key);
 
@@ -94,4 +137,3 @@ class BackButton extends StatelessWidget {
     );
   }
 }
-

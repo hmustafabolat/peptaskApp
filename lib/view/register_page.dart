@@ -5,7 +5,6 @@ import 'package:peptask/widgets/buttons/button.dart';
 import 'package:peptask/widgets/icons/icons.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
-import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -42,13 +41,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          //SizedBox(height: 0.07.sh,),
                           InfoTextWidget(infoText: "Tam Adınız"),
                           buildTextFormFieldName(),
                           SizedBox(
                             height: 0.03.sh,
                           ),
-                          //SizedBox(height: 0.05.sh),
                           InfoTextWidget(infoText: "Email"),
                           buildTextFormFieldEmail(),
                           SizedBox(
@@ -68,6 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               }
                             },
                           ),
+                          SizedBox(
+                            height: 0.09.sh,
+                          ),
+                          SignInButton(lightTextSignIn: "Hesabınız var mı? ", dartTextSignIn: "Giriş Yap")
                         ],
                       ),
                     ),
