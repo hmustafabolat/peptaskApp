@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:peptask/widgets/buttons/button.dart';
+import 'package:peptask/widgets/text/text_widgets.dart';
 import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
 import '../widgets/icons/icons.dart';
@@ -22,38 +24,48 @@ class _UserLoginPageState extends State<UserLoginPage> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Color.fromRGBO(246, 246, 246, 1),
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Center(
-                child: Form(
-                  key: _globalKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AppLogo(
-                        path: "assets/images/logo_icon.png",
-                      ),
-                      AppLogo(path: "assets/images/pepteam_logo.png"),
-                      Text("İzin Portalı"),
-                      buildTextFormFieldEmail(),
-                      buildTextFormFieldPassword(),
-                      ForgotPasswordButton(nullText: "Şifremi Unuttum"),
-                      PurpleMainButton(text: "Giriş Yap", onPressed: () {
-                        () async {
-                          if (_globalKey.currentState!.validate()) {
-                            _globalKey.currentState!.save();
+          body: SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: 100.0, left: 18, right: 18),
+                child: Center(
+                  child: Form(
+                    key: _globalKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(height: 0.06.sh),
+                        AppLogo(
+                          path: "assets/images/logo_icon.png",
+                        ),
+                        SizedBox(height: 0.02.sh),
+                        AppLogo(path: "assets/images/pepteam_logo.png"),
+                        SizedBox(height: 0.02.sh),
+                        TextWidget(textInput: "İzin Portalı"),
+                        SizedBox(height: 0.1.sh),
+                        buildTextFormFieldEmail(),
+                        SizedBox(height: 0.06.sh),
+                        buildTextFormFieldPassword(),
+                        SizedBox(height: 0.03.sh),
+                        ForgotPasswordButton(nullText: "Şifremi Unuttum"),
+                        SizedBox(height: 0.03.sh),
+                        PurpleMainButton(text: "Giriş Yap", onPressed: 
+                          () async {
+                            if (_globalKey.currentState!.validate()) {
+                              _globalKey.currentState!.save();
 
-                            UserModel userModel =
-                            UserModel(email: email, password: password);
+                              UserModel userModel =
+                              UserModel(email: email, password: password);
 
-                            await _viewModel.signIn(userModel);
-                          }
-                        };
-                      },),
-                      SignInButton(lightText: "Hesabınız yok mu?  ", darkText: "Kaydol"),
+                              await _viewModel.signIn(userModel);
+                            }
+                          },
+                        ),
+                        SizedBox(height: 0.09.sh),
+                        SignInButton(lightText: "Hesabınız yok mu?  ", darkText: "Kaydol"),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
