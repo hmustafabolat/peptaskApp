@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../model/user_model.dart';
@@ -10,12 +12,19 @@ class AuthViewModel extends GetxController {
   @override
   onInit() async {
     super.onInit();
-
+firebaseTest();
     await currentUser();
   }
 
+  firebaseTest(){
+    debugPrint("firebasee test ");
+    FirebaseFirestore.instance.collection("test").add({"data":"test data"});
+  }
+
   Future<UserModel?> signIn(UserModel user) async {
-    userModel.value = (await _repository.signIn(user))!;
+    UserModel? userData = await _repository.signIn(user);
+    debugPrint("userData = ${userData?.toJson().toString()}");
+    userModel.value = userData;
   }
 
   Future signUp(UserModel user) async {

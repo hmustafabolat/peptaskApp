@@ -18,7 +18,6 @@ class UserLoginPage extends StatefulWidget {
 
 class _UserLoginPageState extends State<UserLoginPage> {
   final _globalKey = GlobalKey<FormState>();
-  String? email, password;
 
   final AuthViewModel _viewModel = Get.find();
 
@@ -58,6 +57,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
                             onPressed: () async {
                               if (_globalKey.currentState!.validate()) {
                                 _globalKey.currentState!.save();
+                                debugPrint("email = ${email} şifre = $password");
                                 UserModel userModel =
                                     UserModel(email: email, password: password);
                                 await _viewModel.signIn(userModel);

@@ -5,6 +5,7 @@ class AuthRepository {
   final AuthService _service = AuthService();
 
   Future<UserModel?> signIn(UserModel userModel) async {
+    //bu fonksiyon sadece aktarma yapıyor
     return await _service.signIn(userModel);
   }
 

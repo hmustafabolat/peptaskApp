@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import '../model/user_model.dart';
 
@@ -10,8 +11,12 @@ class AuthService {
   //Login Function
   Future<UserModel?> signIn(UserModel userModel) async {
     try {
+      ///email null geliyor bu sebeple bu fonksiyon çalışmıyor
+      debugPrint("email = ${userModel.email}");
+      debugPrint("password = ${userModel.password}");
       var user = await _auth.signInWithEmailAndPassword(
           email: userModel.email!, password: userModel.password!);
+      debugPrint("user = ${user.user.toString()}");
 
       if (user.user?.uid != null) {
         var doc =

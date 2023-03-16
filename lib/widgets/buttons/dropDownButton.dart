@@ -1,59 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-const List<String> list = <String>[
-  'Ücretli İzin',
-  'Ücretsiz İzin',
-  'Yıllık İzin',
-  'Mazeret İzni'
-];
-
-class DropdownButtonExample extends StatefulWidget {
-  const DropdownButtonExample({super.key});
-
+class IzinDropdown extends StatefulWidget {
   @override
-  State<DropdownButtonExample> createState() => _DropdownButtonExampleState();
+  _IzinDropdownState createState() => _IzinDropdownState();
 }
 
-class _DropdownButtonExampleState extends State<DropdownButtonExample> {
-  String dropdownValue = list.first;
+class _IzinDropdownState extends State<IzinDropdown> {
+  String dropdownValue = 'Ücretli İzin';
 
   @override
   Widget build(BuildContext context) {
+    final double phoneWidth = MediaQuery.of(context).size.width;
+    final double phoneHeight = MediaQuery.of(context).size.height;
+
+    final double paddingVertical = phoneHeight * 0.015;
+    final double paddingHorizontal = phoneWidth * 0.34;
+
     return Container(
-      padding: EdgeInsets.only(top: 2, right: 200).w,
-      decoration: BoxDecoration(
-        border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8).w,
+      padding: EdgeInsets.symmetric(
+        vertical: paddingVertical,
+        horizontal: paddingHorizontal,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          DropdownButton<String>(
-            value: dropdownValue,
-            icon: Icon(Icons.keyboard_arrow_down),
-            style: TextStyle(color: Colors.black),
-            underline: Container(
-              color: Colors.black,
-            ),
-            onChanged: (String? value) {
-              // This is called when the user selects an item.
-              setState(() {
-                dropdownValue = value!;
-              });
-            },
-            items: list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0).w,
-                  child: Text(value),
-                ),
-              );
-            }).toList(),
-          ),
-        ],
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: DropdownButton<String>(
+        value: dropdownValue,
+
+        icon: const Icon(Icons.keyboard_arrow_down_outlined),
+        iconSize: 24,
+        elevation: 16,
+        style: const TextStyle(color: Colors.black),
+
+        onChanged: (String? newValue) {
+          setState(() {
+            dropdownValue = newValue!;
+          });
+        },
+        items: <String>['Ücretli İzin', 'Ücretsiz İzin', 'Yıllık İzin', 'Mazeret İzni']
+            .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
       ),
     );
   }

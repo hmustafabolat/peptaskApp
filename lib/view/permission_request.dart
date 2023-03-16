@@ -27,7 +27,8 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
           padding:  EdgeInsets.only(top: 20.0, left: 10, right: 10).w,
           child: Column(children: [
             InfoTextWidget(infoText: "İzin Türü"),
-            DropdownButtonExample(),
+            SizedBox(height: 0.02,),
+            IzinDropdown(),
           ],),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:peptask/model/user_model.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 
 import 'package:peptask/widgets/text-field/text_field_widgets.dart';
@@ -17,7 +18,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _globalKey = GlobalKey<FormState>();
-  String? name, email, password;
 
   AuthViewModel _viewModel = AuthViewModel();
 
@@ -62,6 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             onPressed: () async {
                               if (_globalKey.currentState!.validate()) {
                                 _globalKey.currentState!.save();
+                                _viewModel.signUp(UserModel(email: email,password: password,name: name));
                                 Get.back();
                               }
                             },
