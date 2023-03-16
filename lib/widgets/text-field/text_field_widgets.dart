@@ -46,7 +46,7 @@ class TextFieldPassword extends StatelessWidget {
       margin: EdgeInsets.only(top: 10, bottom: 10).r,
       padding: EdgeInsets.all(2).w,
       decoration: BoxDecoration(
-        border: Border.all(width: 1.5, color: Colors.grey.shade400),
+        border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
         color: Colors.white,
         borderRadius: BorderRadius.circular(8).w,
       ),
@@ -73,7 +73,7 @@ class TextFieldName extends StatelessWidget {
       margin: EdgeInsets.only(top: 10, bottom: 10).r,
       padding: EdgeInsets.all(2).w,
       decoration: BoxDecoration(
-        border: Border.all(width: 1.5, color: Colors.grey.shade400),
+        border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
         color: Colors.white,
         borderRadius: BorderRadius.circular(8).w,
       ),

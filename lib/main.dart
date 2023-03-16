@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:peptask/view/admin_main_page.dart';
 import 'package:peptask/view/landing_page.dart';
+import 'package:peptask/view/permission_request.dart';
 
 import 'bindings/start_app.dart';
 import 'firebase_options.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: LandingPage(),
+          home: PermissionRequestPage(),
           //LandingPage(),
         );
       },

@@ -77,30 +77,5 @@ class _UserLoginPageState extends State<UserLoginPage> {
     );
   }
 
-  TextFormField buildTextFormFieldPassword() {
-    return TextFormField(
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          password = value;
-        },
-        cursorColor: Colors.black,
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-
-            borderSide: BorderSide(
-              color: Color.fromRGBO(208, 213, 221, 1),
-            ),
-          ),
-          hintText: 'Parola',
-          focusColor: Colors.black,
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Color.fromRGBO(208, 213, 221, 1),
-          )),
-        ));
-  }
 
 }

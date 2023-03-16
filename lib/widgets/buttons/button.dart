@@ -127,7 +127,8 @@ class SignInButton extends StatelessWidget {
 
 //Uygulama içerisinde kullanılacak "Back Icon" butonudur.
 class BackButton extends StatelessWidget {
-  const BackButton({Key? key}) : super(key: key);
+  final Color colorPick;
+  const BackButton({Key? key, required this.colorPick}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +136,7 @@ class BackButton extends StatelessWidget {
       onPressed: () => Get.back(),
       icon: Icon(
         Icons.arrow_back_ios_outlined,
-        color: Colors.white,
+        color: colorPick,
         size: 26,
       ),
     );

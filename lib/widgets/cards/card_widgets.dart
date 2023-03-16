@@ -28,7 +28,7 @@ class CardWidgetTop extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 185.0, top: 4,left: 10,bottom: 10).r,
-            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp),),
+            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
           ),
         ],
       ),
@@ -59,7 +59,7 @@ class CardWidgetMid extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 185.0, top: 4,left: 10,bottom: 10).r,
-            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp),),
+            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
           ),
         ],
       ),
@@ -90,7 +90,7 @@ class CardWidgetMid2 extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 205.0, top: 4,left: 10,bottom: 10).r,
-            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp),),
+            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
           ),
         ],
       ),
@@ -126,7 +126,7 @@ class CardWidgetBottom extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 207.0, top: 4,left: 10,bottom: 10).r,
-            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp),),
+            child: Text(allowanceNum.toString(),style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),),
           ),
         ],
       ),
