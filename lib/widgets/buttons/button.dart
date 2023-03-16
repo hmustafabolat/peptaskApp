@@ -39,6 +39,7 @@ class PurpleMainButton extends StatelessWidget {
     );
   }
 }
+
 //Şifremi unuttum butonu fonksiyon eklenmedi!!!
 class ForgotPasswordButton extends StatelessWidget {
   final String nullText;
@@ -61,6 +62,7 @@ class ForgotPasswordButton extends StatelessWidget {
     );
   }
 }
+
 //Login sayfasında ki "Kaydol" butonu.
 class SignUpButton extends StatelessWidget {
   final String lightTextSignUp;
@@ -80,9 +82,9 @@ class SignUpButton extends StatelessWidget {
         TextSpan(
             text: darkTextSignUp,
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(127, 86, 217, 1),
-                decoration: TextDecoration.underline),
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(127, 86, 217, 1),
+            ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 Get.to(RegisterPage());
@@ -91,6 +93,7 @@ class SignUpButton extends StatelessWidget {
     ));
   }
 }
+
 //Register sayfasında ki "Giriş Yap" butonu.
 class SignInButton extends StatelessWidget {
   final String lightTextSignIn;
@@ -110,17 +113,18 @@ class SignInButton extends StatelessWidget {
         TextSpan(
             text: dartTextSignIn,
             style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(127, 86, 217, 1),
-                decoration: TextDecoration.underline),
+              fontWeight: FontWeight.bold,
+              color: Color.fromRGBO(127, 86, 217, 1),
+            ),
             recognizer: TapGestureRecognizer()
-              ..onTap = (){
-              Get.to(UserLoginPage());
+              ..onTap = () {
+                Get.to(UserLoginPage());
               })
       ],
     ));
   }
 }
+
 //Uygulama içerisinde kullanılacak "Back Icon" butonudur.
 class BackButton extends StatelessWidget {
   const BackButton({Key? key}) : super(key: key);
@@ -138,13 +142,12 @@ class BackButton extends StatelessWidget {
   }
 }
 
-
 class BackLogo extends StatelessWidget {
   const BackLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(onPressed: () => Get.back(), icon: Icon(Icons.arrow_back));
+    return IconButton(
+        onPressed: () => Get.back(), icon: Icon(Icons.arrow_back));
   }
 }
-

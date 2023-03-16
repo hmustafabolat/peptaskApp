@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:peptask/widgets/buttons/button.dart';
+import 'package:peptask/widgets/text-field/text_field_widgets.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 import '../model/user_model.dart';
 import '../viewmodel/auth_viewmodel.dart';
@@ -25,7 +26,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Color.fromRGBO(246, 246, 246, 1),
+          backgroundColor: Colors.grey.shade200,
           body: SingleChildScrollView(
             child: Center(
               child: Padding(
@@ -36,7 +37,6 @@ class _UserLoginPageState extends State<UserLoginPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        SizedBox(height: 0.06.sh),
                         AppLogo(
                           path: "assets/images/logo_icon.png",
                         ),
@@ -44,10 +44,12 @@ class _UserLoginPageState extends State<UserLoginPage> {
                         AppLogo(path: "assets/images/pepteam_logo.png"),
                         SizedBox(height: 0.02.sh),
                         TextWidget(textInput: "İzin Portalı"),
-                        SizedBox(height: 0.1.sh),
-                        buildTextFormFieldEmail(),
-                        SizedBox(height: 0.06.sh),
-                        buildTextFormFieldPassword(),
+                        SizedBox(height: 0.09.sh),
+                        InfoTextWidget(infoText: "Email"),
+                        TextFieldEmail(),
+                        SizedBox(height: 0.02.sh),
+                        InfoTextWidget(infoText: "Şifre"),
+                        TextFieldPassword(),
                         SizedBox(height: 0.03.sh),
                         ForgotPasswordButton(nullText: "Şifremi Unuttum"),
                         SizedBox(height: 0.03.sh),
@@ -87,6 +89,7 @@ class _UserLoginPageState extends State<UserLoginPage> {
         obscureText: true,
         decoration: InputDecoration(
           border: OutlineInputBorder(
+
             borderSide: BorderSide(
               color: Color.fromRGBO(208, 213, 221, 1),
             ),
@@ -100,25 +103,4 @@ class _UserLoginPageState extends State<UserLoginPage> {
         ));
   }
 
-  TextFormField buildTextFormFieldEmail() {
-    return TextFormField(
-      style: TextStyle(
-        color: Colors.black,
-      ),
-      onSaved: (value) {
-        email = value;
-      },
-      cursorColor: Colors.black,
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide:
-              BorderSide(color: Color.fromRGBO(208, 213, 221, 1), width: 4),
-        ),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Color.fromRGBO(208, 213, 221, 1))),
-        hintText: "Email Girin",
-      ),
-    );
-  }
 }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:peptask/widgets/buttons/button.dart';
-import 'package:peptask/widgets/icons/icons.dart';
+
+import 'package:peptask/widgets/text-field/text_field_widgets.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
 import '../viewmodel/auth_viewmodel.dart';
@@ -42,17 +43,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InfoTextWidget(infoText: "Tam Adınız"),
-                          buildTextFormFieldName(),
+                          TextFieldName(),
                           SizedBox(
                             height: 0.03.sh,
                           ),
                           InfoTextWidget(infoText: "Email"),
-                          buildTextFormFieldEmail(),
+                          TextFieldEmail(),
                           SizedBox(
                             height: 0.03.sh,
                           ),
                           InfoTextWidget(infoText: "Şifre"),
-                          buildTextFormFieldPassword(),
+                          TextFieldPassword(),
                           SizedBox(
                             height: 0.05.sh,
                           ),
@@ -78,90 +79,4 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           )),
     );
-  }
-
-  TextFormField buildTextFormFieldPassword() {
-    return TextFormField(
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          password = value;
-        },
-        cursorColor: Colors.black,
-        obscureText: true,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color.fromRGBO(208, 213, 221, 1),
-            ),
-          ),
-          hintText: 'Şifre Oluştur',
-          focusColor: Color.fromRGBO(208, 213, 221, 1),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Color.fromRGBO(208, 213, 221, 1),
-          )),
-        ));
-  }
-
-  TextFormField buildTextFormFieldName() {
-    return TextFormField(
-        key: _globalKey,
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          name = value;
-        },
-        validator: (value) {
-          if (value == null) {
-            return 'Boş değer giremezsiniz.';
-          } else if (value.contains(' ')) {
-            return 'Boş değer giremezsiniz.';
-          } else {
-            return null;
-          }
-        },
-        cursorColor: Colors.black,
-        obscureText: false,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color.fromRGBO(208, 213, 221, 1),
-            ),
-          ),
-          hintText: 'Tam Adınızı Giriniz',
-          focusColor: Color.fromRGBO(208, 213, 221, 1),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Color.fromRGBO(208, 213, 221, 1),
-          )),
-        ));
-  }
-
-  TextFormField buildTextFormFieldEmail() {
-    return TextFormField(
-        style: TextStyle(
-          color: Colors.black,
-        ),
-        onSaved: (value) {
-          email = value;
-        },
-        cursorColor: Colors.black,
-        obscureText: false,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Color.fromRGBO(208, 213, 221, 1),
-            ),
-          ),
-          hintText: 'Email',
-          focusColor: Color.fromRGBO(208, 213, 221, 1),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-            color: Color.fromRGBO(208, 213, 221, 1),
-          )),
-        ));
-  }
-}
+  }}
