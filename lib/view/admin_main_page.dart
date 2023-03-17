@@ -7,6 +7,8 @@ import 'package:peptask/widgets/cards/card_widgets.dart';
 import 'package:peptask/widgets/icons/icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../viewmodel/auth_viewmodel.dart';
+
 class AdminMainPage extends StatelessWidget {
   const AdminMainPage({Key? key}) : super(key: key);
 
@@ -15,21 +17,27 @@ class AdminMainPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromRGBO(246, 246, 246, 1),
-        appBar: AppBar(
-          title: Text(
-            "pepteam",
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: Color.fromRGBO(255, 255, 255, 1),
-          elevation: 1,
-          leading: AppLogo(path: "assets/images/logo icon small.png"),
-        ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 0.07.sh,
+                color: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 14.0),
+                  child: Row(
+                    children: [
+                      Image.asset("assets/images/logo icon small.png"),
+                      SizedBox(width: 0.02.sw),
+                      Image.asset("assets/images/pepteam_logo.png"),
+                      SizedBox(width: 0.55.sw,),
+                      CircleAvatar(child: Icon(Icons.person),)
+                    ],
+                  ),
+                ),
+              ),
+              Padding(padding: EdgeInsets.all(8), child: Column(children: [
                 CardWidgetTop(allowance: "Onaylanan İzinlerim", allowanceNum: 4),
                 CardWidgetMid(allowance: "Reddedilen İzinlerim", allowanceNum: 4),
                 CardWidgetMid2(allowance: "Ücretsiz İzinlerim", allowanceNum: 5),
@@ -48,21 +56,24 @@ class AdminMainPage extends StatelessWidget {
                   onTap: (){
                     Get.to(PermissionRequestPage());
                   },
-                  child: DottedBorder(
-                    dashPattern: [6, 3, 6, 3],
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(5).w,
-                    padding: EdgeInsets.all(10).w,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20).w,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.add),
-                          Text(" Yeni İzin Talebi"),
-                        ],
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 8.0,left: 8).r,
+                    child: DottedBorder(
+                      dashPattern: [6, 3, 6, 3],
+                      borderType: BorderType.RRect,
+                      radius: Radius.circular(5).w,
+                      padding: EdgeInsets.all(10).w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20).w,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add),
+                            Text(" Yeni İzin Talebi"),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -79,8 +90,8 @@ class AdminMainPage extends StatelessWidget {
                   elevation: 1.0,
                   child: Padding(
                     padding:
-                        EdgeInsets.only(top: 10.0, right: 130, left: 10, bottom: 10)
-                            .r,
+                    EdgeInsets.only(top: 10.0, right: 130, left: 10, bottom: 10)
+                        .r,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -103,8 +114,8 @@ class AdminMainPage extends StatelessWidget {
 
                         Container(
                           decoration: BoxDecoration(
-                            color: Color.fromRGBO(237, 245, 255, 1),
-                            borderRadius: BorderRadius.all(Radius.circular(20).w)
+                              color: Color.fromRGBO(237, 245, 255, 1),
+                              borderRadius: BorderRadius.all(Radius.circular(20).w)
                           ),
 
                           height: 0.04.sh,
@@ -113,9 +124,9 @@ class AdminMainPage extends StatelessWidget {
                             child: Text(
                               "Bekliyor",
                               style: TextStyle(
-                                color: Color.fromRGBO(11, 83, 142, 1),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w500
+                                  color: Color.fromRGBO(11, 83, 142, 1),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w500
                               ),
                             ),
                           ),
@@ -232,8 +243,9 @@ class AdminMainPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ],),),
+
+            ],
           ),
         ),
       ),

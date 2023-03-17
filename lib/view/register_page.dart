@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 BackLogo(),
                 Padding(
-                  padding: EdgeInsets.only(top: 40, left: 15).r,
+                  padding: EdgeInsets.only(top: 50, left: 15).r,
                   child: RegisterPageSignUpText(),
                 ),
                 Padding(
@@ -42,6 +42,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SizedBox(height: 0.03.sh,),
                           InfoTextWidget(infoText: "Tam Adınız"),
                           TextFieldName(),
                           SizedBox(

@@ -29,7 +29,7 @@ class TextFieldEmail extends StatelessWidget {
         },
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Email girin',
+          hintText: '  Email girin',
 
         ),
       ),
@@ -57,7 +57,7 @@ class TextFieldPassword extends StatelessWidget {
         obscureText: true,
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Şifre',
+          hintText: '  Şifre',
         ),
       ),
     );
@@ -81,16 +81,9 @@ class TextFieldName extends StatelessWidget {
         onSaved: (value){
           password=value;
         },
-        validator: (value) {
-          if (value == null) {
-            return 'Boş değer giremezsiniz.';
-          } else if (value.contains(' ')) {
-            return 'Boş değer giremezsiniz.';
-          } else {
-            return null;
-          }
-        },
-        obscureText: true,
+
+
+        obscureText: false,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Tam adınızı girin',
@@ -99,4 +92,57 @@ class TextFieldName extends StatelessWidget {
     );
   }
 }
+
+class TextFieldDate extends StatelessWidget {
+  final String hintText;
+  const TextFieldDate({Key? key, required this.hintText}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, bottom: 10).r,
+      padding: EdgeInsets.all(2).w,
+      decoration: BoxDecoration(
+        border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8).w,
+      ),
+      child: TextFormField(
+        obscureText: false,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+        ),
+      ),
+    );
+  }
+}
+
+class TextFieldExplanation extends StatelessWidget {
+  final String hintText;
+  const TextFieldExplanation({Key? key, required this.hintText}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10, bottom: 10).r,
+      padding: EdgeInsets.only(top: 2, left: 2, bottom: 80).w,
+      decoration: BoxDecoration(
+        border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8).w,
+      ),
+      child: TextFormField(
+        obscureText: false,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: hintText,
+        ),
+      ),
+    );
+  }
+}
+
+
+
 
