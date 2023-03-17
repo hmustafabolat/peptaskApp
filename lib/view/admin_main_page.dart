@@ -32,7 +32,10 @@ class AdminMainPage extends StatelessWidget {
                       SizedBox(width: 0.02.sw),
                       Image.asset("assets/images/pepteam_logo.png"),
                       SizedBox(width: 0.55.sw,),
-                      CircleAvatar(child: Icon(Icons.person),)
+                      CircleAvatar(child: IconButton(onPressed: () async {
+                        final AuthViewModel _viewModel = Get.find();
+                        await _viewModel.signOut();
+                      }, icon: Icon(Icons.person),),)
                     ],
                   ),
                 ),

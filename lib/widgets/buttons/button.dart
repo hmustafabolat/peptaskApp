@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:peptask/model/user_model.dart';
@@ -24,14 +25,10 @@ class PurpleMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 37),
-        child: Text(text),
-      ),
+      child: Container(margin: EdgeInsets.symmetric(vertical: 15, horizontal: 125).w,child: Text(text)),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
         onPrimary: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 120, vertical: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -150,5 +147,26 @@ class BackLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () => Get.back(), icon: Icon(Icons.arrow_back));
+  }
+}
+
+class RequestSendButton extends StatelessWidget {
+  const RequestSendButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      child: Container(
+          margin:
+          EdgeInsets.symmetric(vertical: 15, horizontal: 115).w,
+          child: Text("Talebi Gönder")),
+      style: ElevatedButton.styleFrom(
+        primary: Color.fromRGBO(127, 86, 217, 1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
   }
 }
