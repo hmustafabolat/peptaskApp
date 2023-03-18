@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:peptask/model/user_model.dart';
 import 'package:peptask/view/login_page.dart';
+import 'package:peptask/widgets/text/text_widgets.dart';
 
 import '../../view/register_page.dart';
 import '../../viewmodel/auth_viewmodel.dart';
@@ -25,7 +26,11 @@ class PurpleMainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
-      child: Container(margin: EdgeInsets.symmetric(vertical: 15, horizontal: 125).w,child: Text(text)),
+      child: Container(
+          margin: EdgeInsets
+              .symmetric(vertical: 15, horizontal: 125)
+              .w,
+          child: Text(text)),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
         onPrimary: Colors.white,
@@ -125,6 +130,7 @@ class SignInButton extends StatelessWidget {
 //Uygulama içerisinde kullanılacak "Back Icon" butonudur.
 class BackButton extends StatelessWidget {
   final Color colorPick;
+
   const BackButton({Key? key, required this.colorPick}) : super(key: key);
 
   @override
@@ -156,10 +162,59 @@ class RequestSendButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                height: 60.sh,
+                width: 200.sw,
+                color: Colors.white,
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets
+                        .only(top: 30, right: 20, left: 20)
+                        .r,
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InfoTextWidget(infoText: "Talep Detayları",),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.close),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 0.04.sh),
+                      BottomSheetTextWidget(
+                          textInfo: "İzin Türü", dateInfo: "18.03.2023"),
+                      SizedBox(height: 0.03.sh),
+                      BottomSheetTextWidget(
+                          textInfo: "İzne Çıkış", dateInfo: "23.04.2023"),
+                      SizedBox(height: 0.03.sh),
+                      BottomSheetTextWidget(
+                          textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
+                      SizedBox(height: 0.03.sh),
+                      BottomSheetTextWidget(
+                          textInfo: "İzinli Gün Toplamı",
+                          dateInfo: "1 iş günü"),
+                      SizedBox(height: 0.03.sh),
+                      BottomSheetDesciription(
+                        description: "Açıklama",
+                        descriptionFull: "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",),
+                      SizedBox(height: 0.03.sh),
+                      ElevatedButton(onPressed: (){}, child: Text("Talebi İptal Et"),),
+                    ]),
+                  ),
+                ),
+              );
+            });
+      },
       child: Container(
-          margin:
-          EdgeInsets.symmetric(vertical: 15, horizontal: 115).w,
+          margin: EdgeInsets
+              .symmetric(vertical: 15, horizontal: 115)
+              .w,
           child: Text("Talebi Gönder")),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
