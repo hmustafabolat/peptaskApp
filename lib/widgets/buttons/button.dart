@@ -27,9 +27,7 @@ class PurpleMainButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       child: Container(
-          margin: EdgeInsets
-              .symmetric(vertical: 15, horizontal: 125)
-              .w,
+          margin: EdgeInsets.symmetric(vertical: 15, horizontal: 125).w,
           child: Text(text)),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
@@ -146,6 +144,7 @@ class BackButton extends StatelessWidget {
   }
 }
 
+//Uygulama da geri gelmek için kullanılan butondur.
 class BackLogo extends StatelessWidget {
   const BackLogo({Key? key}) : super(key: key);
 
@@ -159,6 +158,9 @@ class BackLogo extends StatelessWidget {
 class RequestSendButton extends StatelessWidget {
   const RequestSendButton({Key? key}) : super(key: key);
 
+  void _closeBottomSheet(BuildContext context){
+    Navigator.pop(context);
+  }
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -170,18 +172,21 @@ class RequestSendButton extends StatelessWidget {
                 height: 60.sh,
                 width: 200.sw,
                 color: Colors.white,
+
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets
-                        .only(top: 30, right: 20, left: 20)
-                        .r,
+                    padding: EdgeInsets.only(top: 30, right: 20, left: 20).r,
                     child: Column(children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InfoTextWidget(infoText: "Talep Detayları",),
+                          InfoTextWidget(
+                            infoText: "Talep Detayları",
+                          ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              _closeBottomSheet(context);
+                            },
                             icon: Icon(Icons.close),
                           ),
                         ],
@@ -202,9 +207,28 @@ class RequestSendButton extends StatelessWidget {
                       SizedBox(height: 0.03.sh),
                       BottomSheetDesciription(
                         description: "Açıklama",
-                        descriptionFull: "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",),
+                        descriptionFull:
+                            "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
+                      ),
                       SizedBox(height: 0.03.sh),
-                      ElevatedButton(onPressed: (){}, child: Text("Talebi İptal Et"),),
+                      ElevatedButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          elevation: 1,
+                          side: BorderSide(width: 1, color: Color.fromRGBO(208, 213, 221, 1),),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8).r,
+                          ),
+                        ),
+                        child: Container(
+                            margin: EdgeInsets.symmetric(
+                                    vertical: 15, horizontal: 100)
+                                .w,
+                            child: Text("Talebi İptal Et",style: TextStyle(color: Colors.black, letterSpacing: 0.6),)),
+                      ),
                     ]),
                   ),
                 ),
@@ -212,12 +236,10 @@ class RequestSendButton extends StatelessWidget {
             });
       },
       child: Container(
-          margin: EdgeInsets
-              .symmetric(vertical: 15, horizontal: 115)
-              .w,
+          margin: EdgeInsets.symmetric(vertical: 15, horizontal: 115).w,
           child: Text("Talebi Gönder")),
       style: ElevatedButton.styleFrom(
-        primary: Color.fromRGBO(127, 86, 217, 1),
+        backgroundColor: Color.fromRGBO(127, 86, 217, 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
