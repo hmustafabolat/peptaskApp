@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:peptask/view/admin_main_page.dart';
 import 'package:peptask/view/login_page.dart';
 import 'package:peptask/view/register_page.dart';
+import 'package:peptask/view/request_accept_page.dart';
 import 'package:peptask/viewmodel/auth_viewmodel.dart';
 
 class LandingPage extends StatelessWidget {
@@ -17,7 +18,7 @@ class LandingPage extends StatelessWidget {
       if (_authViewModel.userModel.value?.id == null) {
         return UserLoginPage();
       } else {
-        return AdminMainPage();
+        return RequestAcceptPage();
       }
     });
   }

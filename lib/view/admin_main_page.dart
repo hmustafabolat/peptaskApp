@@ -48,9 +48,14 @@ class AdminMainPage extends StatelessWidget {
                 SizedBox(
                   height: 0.02.sh,
                 ),
-                Text(
-                  "Bekleyen Talepler",
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Bekleyen Talepler",
+                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 0.02.sh,
