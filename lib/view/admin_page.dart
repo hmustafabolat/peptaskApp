@@ -9,8 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../viewmodel/auth_viewmodel.dart';
 
-class AdminMainPage extends StatelessWidget {
-  const AdminMainPage({Key? key}) : super(key: key);
+class AdminPermissionController extends StatelessWidget {
+  const AdminPermissionController({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,59 +40,34 @@ class AdminMainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(8), child: Column(children: [
-                CardWidgetTop(allowance: "Onaylanan İzinlerim", allowanceNum: 4),
-                CardWidgetMid(allowance: "Reddedilen İzinlerim", allowanceNum: 4),
-                CardWidgetMid2(allowance: "Ücretsiz İzinlerim", allowanceNum: 5),
-                CardWidgetBottom(allowance: "Yıllık İzin Hakkım", allowanceNum: 43),
+              Padding(padding: EdgeInsets.all(8).w, child: Column(children: [
+                CardWidget(allowance: "Onay Bekleyen İzinler", allowanceNum: 4),
+                CardWidget(allowance: "Onaylanan İzinler", allowanceNum: 4),
+                CardWidget(allowance: "Reddedilen İzinler", allowanceNum: 5),
+                CardWidget(allowance: "Bugün İzinli Sayısı", allowanceNum: 43),
                 SizedBox(
                   height: 0.02.sh,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Bekleyen Talepler",
-                      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 0.02.sh,
-                ),
-                InkWell(
-                  onTap: (){
-                    Get.to(PermissionRequestPage());
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 8.0,left: 8).r,
-                    child: DottedBorder(
-                      dashPattern: [6, 3, 6, 3],
-                      borderType: BorderType.RRect,
-                      radius: Radius.circular(5).w,
-                      padding: EdgeInsets.all(10).w,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20).w,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.add),
-                            Text(" Yeni İzin Talebi"),
-                          ],
-                        ),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.0).r,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bekleyen Talepler",
+                        style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
                       ),
-                    ),
+                    ],
                   ),
                 ),
                 SizedBox(
                   height: 0.02.sh,
                 ),
+
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                      Radius.circular(8).w,
                     ),
                   ),
                   elevation: 1.0,
@@ -146,7 +121,7 @@ class AdminMainPage extends StatelessWidget {
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                      Radius.circular(8).w,
                     ),
                   ),
                   elevation: 1.0,
@@ -200,7 +175,7 @@ class AdminMainPage extends StatelessWidget {
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+                      Radius.circular(8).w,
                     ),
                   ),
                   elevation: 1.0,

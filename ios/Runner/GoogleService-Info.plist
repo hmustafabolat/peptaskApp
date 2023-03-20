@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>778240247267-iq8vg6ho4f753ht664toonpbropv5end.apps.googleusercontent.com</string>
+	<string>25497640072-q1o9cfddnun8j886c5om4lehrbt8oqtg.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.778240247267-iq8vg6ho4f753ht664toonpbropv5end</string>
+	<string>com.googleusercontent.apps.25497640072-q1o9cfddnun8j886c5om4lehrbt8oqtg</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDZyMWhMhZ3DgDZ-FM6wlkWZFf9jyFVUwc</string>
+	<string>AIzaSyAwJXwBavOLcYSf5pH70m_HKkgGyqYGcJ4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>778240247267</string>
+	<string>25497640072</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.peptask</string>
+	<string>com.syfttny.timeofftracker</string>
 	<key>PROJECT_ID</key>
-	<string>peptask-fb4cd</string>
+	<string>time-off-tracker-30abd</string>
 	<key>STORAGE_BUCKET</key>
-	<string>peptask-fb4cd.appspot.com</string>
+	<string>time-off-tracker-30abd.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:778240247267:ios:d5bf0bd5c62771189c4cd6</string>
+	<string>1:25497640072:ios:e2fda9c79bf65242a0133d</string>
 </dict>
 </plist>

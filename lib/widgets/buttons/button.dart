@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:peptask/model/user_model.dart';
 import 'package:peptask/view/login_page.dart';
+import 'package:peptask/view/request_accept_page.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
+import '../../view/permission_request.dart';
 import '../../view/register_page.dart';
 import '../../viewmodel/auth_viewmodel.dart';
 
@@ -27,7 +30,7 @@ class PurpleMainButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       child: Container(
-          margin: EdgeInsets.symmetric(vertical: 15, horizontal: 125).w,
+          margin: EdgeInsets.symmetric(vertical: 15).w,
           child: Text(text)),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
@@ -35,6 +38,7 @@ class PurpleMainButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
+        minimumSize: Size(double.infinity,40),
       ),
     );
   }
@@ -158,82 +162,12 @@ class BackLogo extends StatelessWidget {
 class RequestSendButton extends StatelessWidget {
   const RequestSendButton({Key? key}) : super(key: key);
 
-  void _closeBottomSheet(BuildContext context){
-    Navigator.pop(context);
-  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                height: 60.sh,
-                width: 200.sw,
-                color: Colors.white,
-
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 30, right: 20, left: 20).r,
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InfoTextWidget(
-                            infoText: "Talep Detayları",
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              _closeBottomSheet(context);
-                            },
-                            icon: Icon(Icons.close),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 0.04.sh),
-                      BottomSheetTextWidget(
-                          textInfo: "İzin Türü", dateInfo: "18.03.2023"),
-                      SizedBox(height: 0.03.sh),
-                      BottomSheetTextWidget(
-                          textInfo: "İzne Çıkış", dateInfo: "23.04.2023"),
-                      SizedBox(height: 0.03.sh),
-                      BottomSheetTextWidget(
-                          textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
-                      SizedBox(height: 0.03.sh),
-                      BottomSheetTextWidget(
-                          textInfo: "İzinli Gün Toplamı",
-                          dateInfo: "1 iş günü"),
-                      SizedBox(height: 0.03.sh),
-                      BottomSheetDesciription(
-                        description: "Açıklama",
-                        descriptionFull:
-                            "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
-                      ),
-                      SizedBox(height: 0.03.sh),
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          elevation: 1,
-                          side: BorderSide(width: 1, color: Color.fromRGBO(208, 213, 221, 1),),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8).r,
-                          ),
-                        ),
-                        child: Container(
-                            margin: EdgeInsets.symmetric(
-                                    vertical: 15, horizontal: 100)
-                                .w,
-                            child: Text("Talebi İptal Et",style: TextStyle(color: Colors.black, letterSpacing: 0.6),)),
-                      ),
-                    ]),
-                  ),
-                ),
-              );
-            });
+        Get.to(RequestAcceptPage());
       },
       child: Container(
           margin: EdgeInsets.symmetric(vertical: 15, horizontal: 115).w,
@@ -242,6 +176,40 @@ class RequestSendButton extends StatelessWidget {
         backgroundColor: Color.fromRGBO(127, 86, 217, 1),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
+        ),
+      ),
+    );
+  }
+}
+
+class DottedBorderButton extends StatelessWidget {
+  const DottedBorderButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){
+        Get.to(PermissionRequestPage());
+      },
+      child: Padding(
+        padding: EdgeInsets.only(right: 8.0,left: 8).r,
+        child: DottedBorder(
+          dashPattern: [6, 3, 6, 3],
+          borderType: BorderType.RRect,
+          radius: Radius.circular(5).w,
+          padding: EdgeInsets.all(10).w,
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20).w,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.add),
+                Text(" Yeni İzin Talebi",style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.2),),
+              ],
+            ),
+          ),
         ),
       ),
     );

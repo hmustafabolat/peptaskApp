@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:peptask/view/admin_main_page.dart';
+import 'package:peptask/view/employees_page.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
