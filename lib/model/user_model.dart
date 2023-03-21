@@ -5,14 +5,12 @@ class UserModel {
   String? name;
   String? email;
   String? password;
-  String? passwordVerify;
 
   UserModel({
     this.id,
     this.name,
     this.email,
     this.password,
-    this.passwordVerify,
   });
 
   UserModel.fromJson(DocumentSnapshot<Map<String, dynamic>> document)

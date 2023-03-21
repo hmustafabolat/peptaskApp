@@ -9,18 +9,6 @@ class AuthViewModel extends GetxController {
   final AuthRepository _repository = Get.find();
   final Rx<UserModel?> userModel = UserModel().obs;
 
-  @override
-  onInit() async {
-    super.onInit();
-firebaseTest();
-    await currentUser();
-  }
-
-  firebaseTest(){
-    debugPrint("firebasee test ");
-    FirebaseFirestore.instance.collection("test").add({"data":"test data"});
-  }
-
   Future<UserModel?> signIn(UserModel user) async {
     UserModel? userData = await _repository.signIn(user);
     debugPrint("userData = ${userData?.toJson().toString()}");
