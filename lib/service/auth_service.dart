@@ -11,12 +11,8 @@ class AuthService {
   //Login Function
   Future<UserModel?> signIn(UserModel userModel) async {
     try {
-      ///email null geliyor bu sebeple bu fonksiyon çalışmıyor
-      debugPrint("email = ${userModel.email}");
-      debugPrint("password = ${userModel.password}");
       var user = await _auth.signInWithEmailAndPassword(
           email: userModel.email!, password: userModel.password!);
-      debugPrint("user = ${user.user.toString()}");
 
       if (user.user?.uid != null) {
         var doc =
@@ -24,10 +20,11 @@ class AuthService {
 
         return UserModel.fromJson(doc);
       } else {
-        return UserModel();
+        return null;
       }
     } catch (e) {
       print('Error: AuthService: signIn: ${e.toString()}');
+      return null;
     }
   }
 
@@ -65,18 +62,16 @@ class AuthService {
           email: userModel.email!, password: userModel.password!);
 
       userModel.id = user.user?.uid;
-      await _firestore
-          .collection("Person")
-          .doc(user.user?.uid)
-          .set(userModel.toJson());
+      userModel.role = 'employe';
 
       if (user.user?.uid != null) {
         return userModel;
       } else {
-        return UserModel();
+        return null;
       }
     } catch (e) {
       print('Error: AuthService: createPerson: ${e.toString()}');
+      return null;
     }
   }
 }

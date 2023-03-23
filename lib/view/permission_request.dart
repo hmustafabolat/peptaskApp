@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:peptask/model/permission_model.dart';
+import 'package:peptask/viewmodel/permission_viewmodel.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 import 'package:peptask/widgets/buttons/dropDownButton.dart';
 import 'package:peptask/widgets/text-field/text_field_widgets.dart';
@@ -18,13 +20,28 @@ String? selectedValue;
 final _formKey = GlobalKey<FormState>();
 
 class PermissionRequestPage extends StatefulWidget {
-  const PermissionRequestPage({Key? key}) : super(key: key);
+  final PermissionViewModel _permissionViewModel = PermissionViewModel();
+
+  final _descriptionController = TextEditingController();
+  final _permissionStartController = TextEditingController();
+  final _permissionEndController = TextEditingController();
+  final _permissionTypeController = TextEditingController();
+  final _statusController = TextEditingController();
+  final _userIDController = TextEditingController();
+  PermissionRequestPage({Key? key}) : super(key: key);
 
   @override
   State<PermissionRequestPage> createState() => _PermissionRequestPageState();
 }
 
 class _PermissionRequestPageState extends State<PermissionRequestPage> {
+  var permissionModel = Permission(
+      description: "",
+      permissionStart: DateTime.now(),
+      permissionEnd: DateTime.now(),
+      statu: "",
+      permissionType: "",
+      userID: "");
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +50,10 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
         appBar: AppBar(
           leading: IconButton(
             onPressed: () => Get.back(),
-            icon: Icon(Icons.arrow_back, color: Colors.black,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
           ),
           centerTitle: true,
           title: Text(
@@ -57,14 +77,14 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Çıkış Tarihi"),
-                TextFieldDate(
+                TextFieldDateStart(
                   hintText: "    Çıkış Tarihi Giriniz",
                 ),
                 SizedBox(
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Başlama Tarihi"),
-                TextFieldDate(
+                TextFieldDateEnd(
                   hintText: "    Başlangıç Tarihi Giriniz",
                 ),
                 SizedBox(

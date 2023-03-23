@@ -16,7 +16,6 @@ class AdminMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color.fromRGBO(246, 246, 246, 1),
@@ -34,16 +33,22 @@ class AdminMainPage extends StatelessWidget {
                       Image.asset("assets/images/logo icon small.png"),
                       SizedBox(width: 0.02.sw),
                       Image.asset("assets/images/pepteam_logo.png"),
-                      SizedBox(width: 0.55.sw,),
-                      CircleAvatar(child: IconButton(onPressed: () async {
-                        final AuthViewModel _viewModel = Get.find();
-                        await _viewModel.signOut();
-                      }, icon: Icon(Icons.person),),)
+                      SizedBox(
+                        width: 0.55.sw,
+                      ),
+                      CircleAvatar(
+                        child: IconButton(
+                          onPressed: () async {
+                            final AuthViewModel _viewModel = Get.find();
+                            await _viewModel.signOut();
+                          },
+                          icon: Icon(Icons.person),
+                        ),
+                      )
                     ],
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -51,39 +56,47 @@ class AdminMainPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                  CardWidget(allowance: "Onaylanan İzinlerim", allowanceNum: 4, isOval: true),
-                  CardWidget(allowance: "Reddedilen İzinlerim", allowanceNum: 4),
-                  CardWidget(allowance: "Ücretsiz İzinlerim", allowanceNum: 5),
-                  CardWidget(allowance: "Yıllık İzin Hakkım", allowanceNum: 43),
-                  SizedBox(
-                    height: 0.02.sh,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.0).r,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Bekleyen Talepler",
-                          style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.bold, color: Colors.indigo.shade800),
-                        ),
-                      ],
+                    CardWidget(
+                        allowance: "Onaylanan İzinlerim",
+                        allowanceNum: 4,
+                        isOval: true),
+                    CardWidget(
+                        allowance: "Reddedilen İzinlerim", allowanceNum: 4),
+                    CardWidget(
+                        allowance: "Ücretsiz İzinlerim", allowanceNum: 5),
+                    CardWidget(
+                        allowance: "Yıllık İzin Hakkım", allowanceNum: 43),
+                    SizedBox(
+                      height: 0.02.sh,
                     ),
-                  ),
-                  SizedBox(
-                    height: 0.02.sh,
-                  ),
-                  DottedBorderButton(),
-                  SizedBox(
-                    height: 0.02.sh,
-                  ),
-
-                  InkwellCard1(),
-                  InkwellCard2(),
-                  InkwellCard3(),
-                ],),
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.0).r,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Bekleyen Talepler",
+                            style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.indigo.shade800),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.02.sh,
+                    ),
+                    DottedBorderButton(),
+                    SizedBox(
+                      height: 0.02.sh,
+                    ),
+                    InkwellCard1(),
+                    InkwellCard2(),
+                    InkwellCard3(),
+                  ],
+                ),
               ),
-
             ],
           ),
         ),

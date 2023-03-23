@@ -9,6 +9,7 @@ final List<String> permissionType = [
 ];
 
 String? selectedValue;
+String inputType = "";
 
 final _formKey = GlobalKey<FormState>();
 
@@ -25,7 +26,7 @@ class _DropDownButtonState extends State<DropDownButton> {
     return Form(
       key: _formKey,
       child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 2),
+        padding: EdgeInsets.symmetric(horizontal: 2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -40,20 +41,21 @@ class _DropDownButtonState extends State<DropDownButton> {
               isExpanded: true,
               hint: Text(
                 'İzin Türünüzü Seçiniz',
-                style: TextStyle(fontSize: 12.sp,),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                ),
               ),
-
               items: permissionType
                   .map((item) => DropdownMenuItem<String>(
-                value: item,
-                child: Text(
-                  item,
-                  style: TextStyle(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ))
+                        value: item,
+                        child: Text(
+                          item,
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ))
                   .toList(),
               validator: (value) {
                 if (value == null) {
@@ -62,6 +64,7 @@ class _DropDownButtonState extends State<DropDownButton> {
                 return null;
               },
               onChanged: (value) {
+                inputType = value.toString();
               },
               onSaved: (value) {
                 selectedValue = value.toString();

@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:peptask/model/permission_model.dart';
 import 'package:peptask/model/user_model.dart';
+import 'package:peptask/service/firestore_service.dart';
+import 'package:peptask/service/permission_service.dart';
 import 'package:peptask/view/login_page.dart';
 import 'package:peptask/view/request_accept_page.dart';
+import 'package:peptask/widgets/text-field/text_field_widgets.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
 import '../../view/permission_request.dart';
@@ -30,15 +34,14 @@ class PurpleMainButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       child: Container(
-          margin: EdgeInsets.symmetric(vertical: 15).w,
-          child: Text(text)),
+          margin: EdgeInsets.symmetric(vertical: 15).w, child: Text(text)),
       style: ElevatedButton.styleFrom(
         primary: Color.fromRGBO(127, 86, 217, 1),
         onPrimary: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        minimumSize: Size(double.infinity,40),
+        minimumSize: Size(double.infinity, 40),
       ),
     );
   }
@@ -162,11 +165,19 @@ class BackLogo extends StatelessWidget {
 class RequestSendButton extends StatelessWidget {
   const RequestSendButton({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
+        PermissionProvider _service = PermissionProvider();
+        _service.addPermission(Permission(
+          description: description,
+          permissionStart: DateTime.now(),
+          permissionEnd: DateTime.now(),
+          permissionType: permissionType[0],
+          statu: "",
+          userID: "",
+        ));
         Get.to(RequestAcceptPage());
       },
       child: Container(
@@ -188,11 +199,11 @@ class DottedBorderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Get.to(PermissionRequestPage());
       },
       child: Padding(
-        padding: EdgeInsets.only(right: 8.0,left: 8).r,
+        padding: EdgeInsets.only(right: 8.0, left: 8).r,
         child: DottedBorder(
           dashPattern: [6, 3, 6, 3],
           borderType: BorderType.RRect,
@@ -206,7 +217,11 @@ class DottedBorderButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.add),
-                Text(" Yeni İzin Talebi",style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 0.2),),
+                Text(
+                  " Yeni İzin Talebi",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, letterSpacing: 0.2),
+                ),
               ],
             ),
           ),

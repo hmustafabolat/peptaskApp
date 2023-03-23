@@ -24,13 +24,12 @@ class TextFieldEmail extends StatelessWidget {
         borderRadius: BorderRadius.circular(8).w,
       ),
       child: TextFormField(
-        onSaved: (value){
-          email=value;
+        onSaved: (value) {
+          email = value;
         },
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: '  Email girin',
-
         ),
       ),
     );
@@ -51,8 +50,8 @@ class TextFieldPassword extends StatelessWidget {
         borderRadius: BorderRadius.circular(8).w,
       ),
       child: TextFormField(
-        onSaved: (value){
-          password=value;
+        onSaved: (value) {
+          password = value;
         },
         obscureText: true,
         decoration: InputDecoration(
@@ -78,11 +77,9 @@ class TextFieldName extends StatelessWidget {
         borderRadius: BorderRadius.circular(8).w,
       ),
       child: TextFormField(
-        onSaved: (value){
-          password=value;
+        onSaved: (value) {
+          password = value;
         },
-
-
         obscureText: false,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -93,9 +90,50 @@ class TextFieldName extends StatelessWidget {
   }
 }
 
-class TextFieldDate extends StatelessWidget {
+DateTime inputDateStart = DateTime.now();
+
+class TextFieldDateStart extends StatefulWidget {
   final String hintText;
-  const TextFieldDate({Key? key, required this.hintText}) : super(key: key);
+  const TextFieldDateStart({Key? key, required this.hintText})
+      : super(key: key);
+
+  @override
+  State<TextFieldDateStart> createState() => _TextFieldDateStartState();
+}
+
+class _TextFieldDateStartState extends State<TextFieldDateStart> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        inputDateStart = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime.now(),
+            lastDate: DateTime.now().add(Duration(days: 365))) as DateTime;
+        setState(() {});
+      },
+      child: Container(
+        alignment: Alignment.centerLeft,
+        height: 0.06.sh,
+        margin: EdgeInsets.only(top: 10, bottom: 10).r,
+        padding: EdgeInsets.all(2).w,
+        decoration: BoxDecoration(
+          border: Border.all(width: 0.003.sw, color: Colors.grey.shade400),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8).w,
+        ),
+        child: Text(inputDateStart.toString().split(" ")[0]),
+      ),
+    );
+  }
+}
+
+String inputDateEnd = DateTime.now().toString();
+
+class TextFieldDateEnd extends StatelessWidget {
+  final String hintText;
+  const TextFieldDateEnd({Key? key, required this.hintText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -113,14 +151,20 @@ class TextFieldDate extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintText,
         ),
+        onChanged: (input) {
+          inputDateEnd = input;
+        },
       ),
     );
   }
 }
 
+String description = "";
+
 class TextFieldExplanation extends StatelessWidget {
   final String hintText;
-  const TextFieldExplanation({Key? key, required this.hintText}) : super(key: key);
+  const TextFieldExplanation({Key? key, required this.hintText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -138,11 +182,10 @@ class TextFieldExplanation extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintText,
         ),
+        onChanged: (value) {
+          description = value;
+        },
       ),
     );
   }
 }
-
-
-
-
