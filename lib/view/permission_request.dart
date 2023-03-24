@@ -77,16 +77,12 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Çıkış Tarihi"),
-                TextFieldDateStart(
-                  hintText: "    Çıkış Tarihi Giriniz",
-                ),
+                TextFieldDateStart(),
                 SizedBox(
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Başlama Tarihi"),
-                TextFieldDateEnd(
-                  hintText: "    Başlangıç Tarihi Giriniz",
-                ),
+                TextFieldDateEnd(),
                 SizedBox(
                   height: 0.015.sh,
                 ),

@@ -16,26 +16,40 @@ class RequestAcceptPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Image.asset("assets/images/accept.png"),
-          SizedBox(height: 0.1.sh,),
-          Text("İzin Talebiniz Başarıyla Gönderildi", style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold, color: Color.fromRGBO(127, 86, 217, 1)),),
-        SizedBox(height: 0.2.sh,),
-        ElevatedButton(
-          onPressed: (){
-            Get.to(AdminMainPage());
-          },
-          child: Container(
-              margin: EdgeInsets.symmetric(vertical: 15, horizontal: 105).w,
-              child: Text("Ana Sayfaya Dön", style: TextStyle(fontSize: 13.sp),)),
-          style: ElevatedButton.styleFrom(
-            primary: Color.fromRGBO(127, 86, 217, 1),
-            onPrimary: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+            Image.asset("assets/gif/VOCvwccm3L-2.gif"),
+            SizedBox(
+              height: 0.1.sh,
             ),
-          ),
+            Text(
+              "İzin Talebiniz Başarıyla Gönderildi",
+              style: TextStyle(
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(127, 86, 217, 1)),
+            ),
+            SizedBox(
+              height: 0.2.sh,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.to(AdminMainPage());
+              },
+              child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 15, horizontal: 105).w,
+                  child: Text(
+                    "Ana Sayfaya Dön",
+                    style: TextStyle(fontSize: 13.sp),
+                  )),
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(127, 86, 217, 1),
+                onPrimary: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+          ],
         ),
-        ],),
       ),
     );
   }
