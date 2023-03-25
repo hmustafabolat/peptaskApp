@@ -11,7 +11,7 @@ class PermissionViewModel extends GetxController {
   final PermissionService _permissionService = PermissionService();
 
   final permissionFormGlobalKey = GlobalKey<FormState>();
-  String? description, permissionType, status;
+  String? description = "", permissionType = " ", status = "";
   DateTime permissionStart = DateTime.now(), permissionEnd = DateTime.now();
 
   PermissionModel? myPermission;
