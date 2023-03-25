@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:peptask/model/permission_model.dart';
 import 'package:peptask/viewmodel/permission_viewmodel.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 import 'package:peptask/widgets/buttons/dropDownButton.dart';
+import 'package:peptask/widgets/text-field/custom_text_field.dart';
 import 'package:peptask/widgets/text-field/text_field_widgets.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
@@ -77,21 +77,20 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Çıkış Tarihi"),
-                TextFieldDateStart(
-                  hintText: "    Çıkış Tarihi Giriniz",
-                ),
+                TextFieldDateStart(),
                 SizedBox(
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Başlama Tarihi"),
-                TextFieldDateEnd(
-                  hintText: "    Başlangıç Tarihi Giriniz",
-                ),
+                TextFieldDateEnd(),
                 SizedBox(
                   height: 0.015.sh,
                 ),
                 InfoTextWidget(infoText: "Açıklama (Opsiyonel)"),
-                TextFieldExplanation(hintText: "    Açıklama girebilirsiniz."),
+                CustomTextField(
+                  hintText: "    Açıklama girebilirsiniz.",
+                  onSaved: (value) {},
+                ),
                 SizedBox(
                   height: 0.15.sh,
                 ),

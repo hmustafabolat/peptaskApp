@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:peptask/view/employees_page.dart';
-import 'package:peptask/view/admin_page.dart';
+import 'package:peptask/view/user_home.dart';
 import 'package:peptask/view/login_page.dart';
-import 'package:peptask/view/register_page.dart';
-import 'package:peptask/view/request_accept_page.dart';
 import 'package:peptask/viewmodel/auth_viewmodel.dart';
 
 class LandingPage extends StatelessWidget {
@@ -14,8 +11,6 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      print("şuanki tarih = ${DateTime.now().millisecondsSinceEpoch}");
-      print("LandingPage user = ${_authViewModel.userModel.value?.toJson()}");
       if (_authViewModel.userModel.value?.id == null) {
         return UserLoginPage();
       } else {

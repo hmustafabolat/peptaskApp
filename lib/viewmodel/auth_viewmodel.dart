@@ -9,14 +9,30 @@ class AuthViewModel extends GetxController {
   final AuthRepository _repository = Get.find();
   final Rx<UserModel?> userModel = UserModel().obs;
 
-  Future<UserModel?> signIn(UserModel user) async {
-    UserModel? userData = await _repository.signIn(user);
-    debugPrint("userData = ${userData?.toJson().toString()}");
-    userModel.value = userData;
+  final signInFormGlobalKey = GlobalKey<FormState>();
+  final signUpFormGlobalKey = GlobalKey<FormState>();
+  String? name, email, password;
+
+  Future<UserModel?> signIn() async {
+    if (signInFormGlobalKey.currentState!.validate()) {
+      signInFormGlobalKey.currentState!.save();
+
+      userModel.value =
+          await _repository.signIn(UserModel(email: email, password: password));
+    }
   }
 
   Future signUp(UserModel user) async {
-    await _repository.signUp(user);
+    if (signUpFormGlobalKey.currentState!.validate()) {
+      signUpFormGlobalKey.currentState!.save();
+
+      var result = await _repository.signUp(UserModel(
+        email: email,
+        password: password,
+        name: name,
+      ));
+      Get.back();
+    }
   }
 
   Future signOut() async {

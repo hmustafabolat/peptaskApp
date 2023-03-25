@@ -8,6 +8,7 @@ import 'package:peptask/widgets/text-field/text_field_widgets.dart';
 import 'package:peptask/widgets/text/text_widgets.dart';
 
 import '../viewmodel/auth_viewmodel.dart';
+import '../widgets/text-field/custom_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -42,36 +43,49 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 0.03.sh,),
+                          SizedBox(
+                            height: 0.03.sh,
+                          ),
                           InfoTextWidget(infoText: "Tam Adınız"),
-                          TextFieldName(),
+                          CustomTextField(
+                            hintText: 'Tam Adınız: ',
+                            onSaved: (String? value) {
+                              _viewModel.name = value;
+                            },
+                          ),
                           SizedBox(
                             height: 0.03.sh,
                           ),
                           InfoTextWidget(infoText: "Email"),
-                          TextFieldEmail(),
+                          CustomTextField(
+                            hintText: 'Email: ',
+                            onSaved: (String? value) {
+                              _viewModel.email = value;
+                            },
+                          ),
                           SizedBox(
                             height: 0.03.sh,
                           ),
                           InfoTextWidget(infoText: "Şifre"),
-                          TextFieldPassword(),
+                          CustomTextField(
+                            hintText: 'Şifre: ',
+                            onSaved: (String? value) {
+                              _viewModel.password = value;
+                            },
+                          ),
                           SizedBox(
                             height: 0.05.sh,
                           ),
                           PurpleMainButton(
                             text: "Kayıt Ol",
-                            onPressed: () async {
-                              if (_globalKey.currentState!.validate()) {
-                                _globalKey.currentState!.save();
-                                _viewModel.signUp(UserModel(email: email,password: password,name: name));
-                                Get.back();
-                              }
-                            },
+                            onPressed: () async {},
                           ),
                           SizedBox(
                             height: 0.09.sh,
                           ),
-                          SignInButton(lightTextSignIn: "Hesabınız var mı? ", dartTextSignIn: "Giriş Yap")
+                          SignInButton(
+                              lightTextSignIn: "Hesabınız var mı? ",
+                              dartTextSignIn: "Giriş Yap")
                         ],
                       ),
                     ),
@@ -81,4 +95,5 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           )),
     );
-  }}
+  }
+}

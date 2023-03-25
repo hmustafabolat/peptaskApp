@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:peptask/view/employees_page.dart';
+import 'package:peptask/view/user_home.dart';
 import 'package:peptask/view/landing_page.dart';
 import 'package:peptask/view/permission_request.dart';
 

@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:peptask/viewmodel/permission_viewmodel.dart';
+import 'package:peptask/widgets/buttons/dropDownButton.dart';
 
 import '../text/text_widgets.dart';
 
@@ -52,7 +55,9 @@ class CardWidget extends StatelessWidget {
 }
 
 class InkwellCard1 extends StatelessWidget {
-  const InkwellCard1({Key? key}) : super(key: key);
+  final PermissionViewModel _permissionViewModel =
+      Get.put(PermissionViewModel());
+  InkwellCard1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +76,9 @@ class InkwellCard1 extends StatelessWidget {
                 color: Colors.white,
                 child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 30, right: 20, left: 20,bottom: 10).r,
+                    padding: EdgeInsets.only(
+                            top: 30, right: 20, left: 20, bottom: 10)
+                        .r,
                     child: Column(children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,10 +96,10 @@ class InkwellCard1 extends StatelessWidget {
                       ),
                       SizedBox(height: 0.04.sh),
                       BottomSheetTextWidget(
-                          textInfo: "İzin Türü", dateInfo: "18.03.2023"),
+                          textInfo: "İzin Türü", dateInfo: "İZİN"),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
-                          textInfo: "İzne Çıkış", dateInfo: "23.04.2023"),
+                          textInfo: "İzne Çıkış", dateInfo: "21.12.2022"),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
                           textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
@@ -351,6 +358,7 @@ class InkwellCard3 extends StatelessWidget {
     void _closeBottomSheet(BuildContext context) {
       Get.back();
     }
+
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -361,7 +369,9 @@ class InkwellCard3 extends StatelessWidget {
                   color: Colors.white,
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 10).r,
+                      padding: EdgeInsets.only(
+                              top: 10, right: 20, left: 20, bottom: 10)
+                          .r,
                       child: Column(children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -377,15 +387,14 @@ class InkwellCard3 extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Image.asset(
-                            "assets/images/reject.png"),
+                        Image.asset("assets/images/reject.png"),
                         SizedBox(
                           height: 0.02.sh,
                         ),
                         Text(
                           "Talep Onaylanmadı",
                           style: TextStyle(
-                            color: Color.fromRGBO(179,35,24,1),
+                            color: Color.fromRGBO(179, 35, 24, 1),
                           ),
                         ),
                         SizedBox(height: 0.04.sh),
@@ -405,7 +414,7 @@ class InkwellCard3 extends StatelessWidget {
                         BottomSheetDesciription(
                           description: "Açıklama",
                           descriptionFull:
-                          "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
+                              "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
                         ),
                         SizedBox(height: 0.03.sh),
                       ]),
@@ -423,7 +432,8 @@ class InkwellCard3 extends StatelessWidget {
         ),
         elevation: 1.0,
         child: Padding(
-          padding: EdgeInsets.only(top: 10.0, right: 130, left: 10, bottom: 10).r,
+          padding:
+              EdgeInsets.only(top: 10.0, right: 130, left: 10, bottom: 10).r,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

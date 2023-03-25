@@ -54,6 +54,7 @@ class AuthService {
       return UserModel();
     }
   }
+  //controller -> repository -> auth_service -> repository -> firebase_service -> reposityory -> controller
 
 //Register Function
   Future<UserModel?> signUp(UserModel userModel) async {
@@ -62,8 +63,6 @@ class AuthService {
           email: userModel.email!, password: userModel.password!);
 
       userModel.id = user.user?.uid;
-      userModel.role = 'employe';
-
       if (user.user?.uid != null) {
         return userModel;
       } else {

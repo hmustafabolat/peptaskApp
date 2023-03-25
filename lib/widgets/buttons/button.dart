@@ -171,7 +171,7 @@ class RequestSendButton extends StatelessWidget {
       onPressed: () {
         PermissionProvider _service = PermissionProvider();
         _service.addPermission(Permission(
-          description: description,
+          description: "",
           permissionStart: DateTime.now(),
           permissionEnd: DateTime.now(),
           permissionType: permissionType[0],

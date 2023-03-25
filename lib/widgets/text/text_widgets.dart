@@ -76,7 +76,9 @@ class BottomSheetTextWidget extends StatelessWidget {
 class BottomSheetDesciription extends StatelessWidget {
   final String description;
   final String descriptionFull;
-  const BottomSheetDesciription({Key? key, required this.description, required this.descriptionFull}) : super(key: key);
+  const BottomSheetDesciription(
+      {Key? key, required this.description, required this.descriptionFull})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,10 @@ class BottomSheetDesciription extends StatelessWidget {
           ),
         ),
         SizedBox(height: 0.03.sh),
-        Text(descriptionFull,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),),
+        Text(
+          descriptionFull,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
+        ),
       ],
     );
   }
