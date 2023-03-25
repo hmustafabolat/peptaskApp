@@ -163,23 +163,14 @@ class BackLogo extends StatelessWidget {
 }
 
 class RequestSendButton extends StatelessWidget {
-  const RequestSendButton({Key? key}) : super(key: key);
+  final void Function()? onPressed;
+  const RequestSendButton({Key? key, required this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        PermissionProvider _service = PermissionProvider();
-        _service.addPermission(Permission(
-          description: "",
-          permissionStart: DateTime.now(),
-          permissionEnd: DateTime.now(),
-          permissionType: permissionType[0],
-          statu: "",
-          userID: "",
-        ));
-        Get.to(RequestAcceptPage());
-      },
+      onPressed: onPressed,
       child: Container(
           margin: EdgeInsets.symmetric(vertical: 15, horizontal: 115).w,
           child: Text("Talebi Gönder")),
@@ -194,14 +185,13 @@ class RequestSendButton extends StatelessWidget {
 }
 
 class DottedBorderButton extends StatelessWidget {
-  const DottedBorderButton({Key? key}) : super(key: key);
+  final void Function()? onTap;
+  const DottedBorderButton({Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.to(PermissionRequestPage());
-      },
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.only(right: 8.0, left: 8).r,
         child: DottedBorder(

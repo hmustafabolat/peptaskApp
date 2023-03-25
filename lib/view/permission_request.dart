@@ -15,19 +15,7 @@ final List<String> permissionType = [
   'Yıllık İzin'
 ];
 
-String? selectedValue;
-
-final _formKey = GlobalKey<FormState>();
-
 class PermissionRequestPage extends StatefulWidget {
-  final PermissionViewModel _permissionViewModel = PermissionViewModel();
-
-  final _descriptionController = TextEditingController();
-  final _permissionStartController = TextEditingController();
-  final _permissionEndController = TextEditingController();
-  final _permissionTypeController = TextEditingController();
-  final _statusController = TextEditingController();
-  final _userIDController = TextEditingController();
   PermissionRequestPage({Key? key}) : super(key: key);
 
   @override
@@ -35,13 +23,8 @@ class PermissionRequestPage extends StatefulWidget {
 }
 
 class _PermissionRequestPageState extends State<PermissionRequestPage> {
-  var permissionModel = Permission(
-      description: "",
-      permissionStart: DateTime.now(),
-      permissionEnd: DateTime.now(),
-      statu: "",
-      permissionType: "",
-      userID: "");
+  final PermissionViewModel _permissionViewModel = PermissionViewModel();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -68,37 +51,72 @@ class _PermissionRequestPageState extends State<PermissionRequestPage> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(top: 20.0, left: 10, right: 10).w,
-            child: Column(
-              children: [
-                InfoTextWidget(infoText: "İzin Türü"),
-                SizedBox(height: 0.015.sh),
-                DropDownButton(),
-                SizedBox(
-                  height: 0.015.sh,
-                ),
-                InfoTextWidget(infoText: "Çıkış Tarihi"),
-                TextFieldDateStart(),
-                SizedBox(
-                  height: 0.015.sh,
-                ),
-                InfoTextWidget(infoText: "Başlama Tarihi"),
-                TextFieldDateEnd(),
-                SizedBox(
-                  height: 0.015.sh,
-                ),
-                InfoTextWidget(infoText: "Açıklama (Opsiyonel)"),
-                CustomTextField(
-                  hintText: "    Açıklama girebilirsiniz.",
-                  onSaved: (value) {},
-                ),
-                SizedBox(
-                  height: 0.15.sh,
-                ),
-                RequestSendButton(),
-                SizedBox(
-                  height: 0.05.sh,
-                )
-              ],
+            child: Form(
+              key: _permissionViewModel.permissionFormGlobalKey,
+              child: Column(
+                children: [
+                  InfoTextWidget(infoText: "İzin Türü"),
+                  SizedBox(height: 0.015.sh),
+                  DropDownButton(),
+                  SizedBox(
+                    height: 0.015.sh,
+                  ),
+                  InfoTextWidget(infoText: "Çıkış Tarihi"),
+                  CustomDateTimeSelectWidget(
+                    onTap: () async {
+                      DateTime selectedDateTime = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime.now().add(Duration(days: 365)))
+                          as DateTime;
+
+                      _permissionViewModel.permissionStart = selectedDateTime;
+
+                      setState(() {});
+                    },
+                    dateTime: _permissionViewModel.permissionStart,
+                  ),
+                  SizedBox(
+                    height: 0.015.sh,
+                  ),
+                  InfoTextWidget(infoText: "Başlama Tarihi"),
+                  CustomDateTimeSelectWidget(
+                    onTap: () async {
+                      DateTime selectedDateTime = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime.now().add(Duration(days: 365)))
+                          as DateTime;
+
+                      _permissionViewModel.permissionEnd = selectedDateTime;
+
+                      setState(() {});
+                    },
+                    dateTime: _permissionViewModel.permissionEnd,
+                  ),
+                  SizedBox(
+                    height: 0.015.sh,
+                  ),
+                  InfoTextWidget(infoText: "Açıklama (Opsiyonel)"),
+                  CustomTextField(
+                    hintText: "    Açıklama girebilirsiniz.",
+                    onSaved: (value) {
+                      _permissionViewModel.description = value;
+                    },
+                  ),
+                  SizedBox(
+                    height: 0.15.sh,
+                  ),
+                  RequestSendButton(
+                    onPressed: _permissionViewModel.addPermission,
+                  ),
+                  SizedBox(
+                    height: 0.05.sh,
+                  )
+                ],
+              ),
             ),
           ),
         ),

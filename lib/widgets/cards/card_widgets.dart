@@ -55,16 +55,11 @@ class CardWidget extends StatelessWidget {
 }
 
 class InkwellCard1 extends StatelessWidget {
-  final PermissionViewModel _permissionViewModel =
-      Get.put(PermissionViewModel());
+  final PermissionViewModel _permissionViewModel = Get.find();
   InkwellCard1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void _closeBottomSheet(BuildContext context) {
-      Get.back();
-    }
-
     return InkWell(
       onTap: () {
         showModalBottomSheet(
@@ -99,10 +94,18 @@ class InkwellCard1 extends StatelessWidget {
                           textInfo: "İzin Türü", dateInfo: "İZİN"),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
-                          textInfo: "İzne Çıkış", dateInfo: "21.12.2022"),
+                          textInfo: "İzne Çıkış",
+                          dateInfo: _permissionViewModel
+                              .myPermission!.permissionStart
+                              .toString()
+                              .split(" ")[0]),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
-                          textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
+                          textInfo: "İşe Başlama",
+                          dateInfo: _permissionViewModel
+                              .myPermission!.permissionEnd
+                              .toString()
+                              .split(" ")[0]),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
                           textInfo: "İzinli Gün Toplamı",
@@ -111,7 +114,8 @@ class InkwellCard1 extends StatelessWidget {
                       BottomSheetDesciription(
                         description: "Açıklama",
                         descriptionFull:
-                            "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
+                            _permissionViewModel.myPermission?.description ??
+                                "",
                       ),
                       SizedBox(height: 0.03.sh),
                       ElevatedButton(
@@ -195,6 +199,10 @@ class InkwellCard1 extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _closeBottomSheet(BuildContext context) {
+    Get.back();
   }
 }
 

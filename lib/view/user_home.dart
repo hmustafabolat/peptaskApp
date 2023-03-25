@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peptask/view/permission_request.dart';
+import 'package:peptask/viewmodel/permission_viewmodel.dart';
 import 'package:peptask/widgets/buttons/button.dart';
 import 'package:peptask/widgets/cards/card_widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,15 +9,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../viewmodel/auth_viewmodel.dart';
 
 class AdminMainPage extends StatelessWidget {
-  const AdminMainPage({Key? key}) : super(key: key);
+  AdminMainPage({Key? key}) : super(key: key);
 
+  final PermissionViewModel _permissionViewModel = Get.find();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Color.fromRGBO(246, 246, 246, 1),
-        body: _buildBody(),
-      ),
+    return FutureBuilder(
+      future: _permissionViewModel.getAllPermission(),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasData) {
+          _permissionViewModel.getAllPermission();
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: Color.fromRGBO(246, 246, 246, 1),
+              body: _buildBody(),
+            ),
+          );
+        } else {
+          return Container(
+              width: 200,
+              height: 200,
+              child: Center(child: const CircularProgressIndicator()));
+        }
+      },
     );
   }
 
@@ -85,7 +101,11 @@ class AdminMainPage extends StatelessWidget {
                 SizedBox(
                   height: 0.02.sh,
                 ),
-                DottedBorderButton(),
+                DottedBorderButton(
+                  onTap: () {
+                    Get.to(() => PermissionRequestPage());
+                  },
+                ),
                 SizedBox(
                   height: 0.02.sh,
                 ),

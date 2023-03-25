@@ -1,40 +1,56 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:peptask/model/permission_model.dart';
 import 'package:peptask/service/permission_service.dart';
+import 'package:peptask/view/request_accept_page.dart';
+import 'package:peptask/viewmodel/auth_viewmodel.dart';
 
 class PermissionViewModel extends GetxController {
+  final AuthViewModel _authViewModel = Get.find();
   final PermissionProvider _permissionProvider = PermissionProvider();
   final PermissionService _permissionService = PermissionService();
 
-  RxList<Map<String, dynamic>> permission = <Map<String, dynamic>>[].obs;
+  final permissionFormGlobalKey = GlobalKey<FormState>();
+  String? description, permissionType, status;
+  DateTime permissionStart = DateTime.now(), permissionEnd = DateTime.now();
 
-  Future<void> getData() async {
-    final result = await _permissionService.getData();
-    permission.assign(result as Map<String, dynamic>);
+  PermissionModel? myPermission;
+
+  getAllPermission() async {
+    var result = await _permissionProvider
+        .getAllPermission(_authViewModel.userModel.value?.id);
+
+    if (result != null) {
+      myPermission = result;
+
+      print('myPermission.toJson(): ${myPermission?.toJson()}');
+
+      return true;
+    }
+
+    return false;
   }
 
-  Future<void> addPermission(
-      String description,
-      DateTime permissionStart,
-      DateTime permissionEnd,
-      String permissionType,
-      String status,
-      String userID) async {
+  Future<void> addPermission() async {
     try {
-      await _permissionProvider.addPermission(
-        Permission(
-          description: description,
-          permissionStart: permissionStart,
-          permissionEnd: permissionEnd,
-          permissionType: permissionType,
-          statu: status,
-          userID: userID,
-        ),
-      );
-      print('Permission added successfully.');
+      if (permissionFormGlobalKey.currentState!.validate()) {
+        permissionFormGlobalKey.currentState!.save();
+
+        bool? result = await _permissionProvider.addPermission(
+          PermissionModel(
+            description: description,
+            permissionStart: permissionStart,
+            permissionEnd: permissionEnd,
+            permissionType: permissionType,
+            statu: status,
+            userID: _authViewModel.userModel.value?.id ?? "",
+          ),
+        );
+
+        if (result == true) {
+          Get.to(() => RequestAcceptPage());
+        }
+      }
     } catch (error) {
       print('Failed to add permission: $error');
     }

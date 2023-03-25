@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:peptask/viewmodel/permission_viewmodel.dart';
 
 import '../repository/auth_repository.dart';
 import '../service/auth_service.dart';
@@ -9,5 +10,7 @@ class StartApp {
     Get.lazyPut(() => AuthViewModel(), fenix: true);
     Get.lazyPut(() => AuthRepository(), fenix: true);
     Get.lazyPut(() => AuthService(), fenix: true);
+
+    Get.lazyPut(() => PermissionViewModel(), fenix: true);
   }
 }

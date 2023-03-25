@@ -5,15 +5,30 @@ import 'package:peptask/model/permission_model.dart';
 class PermissionProvider extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<void> addPermission(Permission permission) async {
-    await _firestore.collection('requests').add({
-      'description': permission.description,
-      'permissionStart': Timestamp.fromDate(permission.permissionStart),
-      'permissionEnd': Timestamp.fromDate(permission.permissionEnd),
-      'permissionType': permission.permissionType,
-      'status': permission.statu,
-      'userID': permission.userID,
-    });
+  Future<bool?> addPermission(PermissionModel permission) async {
+    try {
+      await _firestore
+          .collection('requests')
+          .doc(permission.userID)
+          .set(permission.toJson());
+      print('burada');
+
+      return true;
+    } catch (e) {
+      print('Error: PermissionProvider: addPermission: ${e.toString()}');
+      return null;
+    }
+  }
+
+  Future<PermissionModel?> getAllPermission(String? userId) async {
+    try {
+      var result = await _firestore.collection('requests').doc(userId).get();
+
+      return PermissionModel.fromJson(result);
+    } catch (e) {
+      print('Error: PermissionProvider: getAllPermission: ${e.toString()}');
+      return null;
+    }
   }
 }
 
