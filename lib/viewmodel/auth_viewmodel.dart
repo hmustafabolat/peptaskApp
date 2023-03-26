@@ -23,6 +23,7 @@ class AuthViewModel extends GetxController {
   }
 
   Future signUp(UserModel user) async {
+    await _repository.signUp(user);
     if (signUpFormGlobalKey.currentState!.validate()) {
       signUpFormGlobalKey.currentState!.save();
 

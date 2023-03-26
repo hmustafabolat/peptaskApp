@@ -11,7 +11,6 @@ class PermissionProvider extends GetxController {
           .collection('requests')
           .doc(permission.userID)
           .set(permission.toJson());
-      print('burada');
 
       return true;
     } catch (e) {

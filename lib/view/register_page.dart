@@ -78,7 +78,16 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           PurpleMainButton(
                             text: "Kayıt Ol",
-                            onPressed: () async {},
+                            onPressed: () async {
+                              if (_globalKey.currentState!.validate()) {
+                                _globalKey.currentState!.save();
+                                _viewModel.signUp(UserModel(
+                                    email: _viewModel.email,
+                                    password: _viewModel.password,
+                                    name: _viewModel.name));
+                                Get.back();
+                              }
+                            },
                           ),
                           SizedBox(
                             height: 0.09.sh,
