@@ -109,9 +109,20 @@ class UserMainPage extends StatelessWidget {
                 SizedBox(
                   height: 0.02.sh,
                 ),
-                InkwellCard1(),
-                InkwellCard2(),
-                InkwellCard3(),
+                //Listview builder tek kart liste boyutu kadar
+                Container(
+                  height: 400,
+                  child: ListView.builder(
+                      itemCount: _permissionViewModel.allPermissions.length,
+                      itemBuilder: (context, index) {
+                        //   String key = widget.editTask.customPhotosMap.keys.elementAt(index);
+                        return InkwellCard1(
+                            permission:
+                                _permissionViewModel.allPermissions[index]);
+                      }),
+                ), // InkwellCard1(), // ya tek permisson modeli yollanacak lsite içinden indexe göre yada index yollanacak listeyi içerde kontro ledeceksin
+                // InkwellCard2(),
+                // InkwellCard3(),
               ],
             ),
           ),

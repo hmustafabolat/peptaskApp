@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:peptask/model/permission_model.dart';
 import 'package:peptask/viewmodel/permission_viewmodel.dart';
 import 'package:peptask/widgets/buttons/dropDownButton.dart';
 
@@ -55,8 +56,9 @@ class CardWidget extends StatelessWidget {
 }
 
 class InkwellCard1 extends StatelessWidget {
+  final PermissionModel permission;
   final PermissionViewModel _permissionViewModel = Get.find();
-  InkwellCard1({Key? key}) : super(key: key);
+  InkwellCard1({Key? key, required this.permission}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,21 +94,17 @@ class InkwellCard1 extends StatelessWidget {
                       SizedBox(height: 0.04.sh),
                       BottomSheetTextWidget(
                           textInfo: "İzin Türü",
-                          dateInfo: _permissionViewModel
-                              .myPermission!.permissionType
-                              .toString()),
+                          dateInfo: permission.permissionType.toString()),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
                           textInfo: "İzne Çıkış",
-                          dateInfo: _permissionViewModel
-                              .myPermission!.permissionStart
+                          dateInfo: permission.permissionStart
                               .toString()
                               .split(" ")[0]),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
                           textInfo: "İşe Başlama",
-                          dateInfo: _permissionViewModel
-                              .myPermission!.permissionEnd
+                          dateInfo: permission.permissionEnd
                               .toString()
                               .split(" ")[0]),
                       SizedBox(height: 0.03.sh),
@@ -116,9 +114,7 @@ class InkwellCard1 extends StatelessWidget {
                       SizedBox(height: 0.03.sh),
                       BottomSheetDesciription(
                         description: "Açıklama",
-                        descriptionFull:
-                            _permissionViewModel.myPermission?.description ??
-                                "",
+                        descriptionFull: permission.description ?? "",
                       ),
                       SizedBox(height: 0.03.sh),
                       ElevatedButton(
@@ -166,7 +162,7 @@ class InkwellCard1 extends StatelessWidget {
             children: [
               // Sol üstteki metin
               Text(
-                _permissionViewModel.myPermission!.permissionType.toString(),
+                permission.permissionType.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0.sp,
@@ -177,13 +173,9 @@ class InkwellCard1 extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text(_permissionViewModel.myPermission!.permissionStart
-                      .toString()
-                      .split(" ")[0]),
+                  Text(permission.permissionStart.toString().split(" ")[0]),
                   Text(" - "),
-                  Text(_permissionViewModel.myPermission!.permissionEnd
-                      .toString()
-                      .split(" ")[0])
+                  Text(permission.permissionEnd.toString().split(" ")[0])
                 ],
               ),
 
@@ -199,7 +191,11 @@ class InkwellCard1 extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "Bekliyor",
+                    permission.statu == "pending"
+                        ? "Bekliyor"
+                        : permission.statu == "accepted"
+                            ? "Kabul Edildi"
+                            : "Red edildi",
                     style: TextStyle(
                         color: Color.fromRGBO(11, 83, 142, 1),
                         fontSize: 12.sp,

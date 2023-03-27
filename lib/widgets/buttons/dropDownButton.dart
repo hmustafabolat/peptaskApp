@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:peptask/storage.dart';
 
 final List<String> permissionType = [
   'Ücretli İzin',
@@ -65,6 +66,8 @@ class _DropDownButtonState extends State<DropDownButton> {
               },
               onChanged: (value) {
                 inputType = value.toString();
+                type = value.toString();
+                print(type);
               },
               onSaved: (value) {
                 selectedValue = value.toString();
