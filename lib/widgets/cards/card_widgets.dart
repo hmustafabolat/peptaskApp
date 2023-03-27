@@ -91,7 +91,10 @@ class InkwellCard1 extends StatelessWidget {
                       ),
                       SizedBox(height: 0.04.sh),
                       BottomSheetTextWidget(
-                          textInfo: "İzin Türü", dateInfo: "İZİN"),
+                          textInfo: "İzin Türü",
+                          dateInfo: _permissionViewModel
+                              .myPermission!.permissionType
+                              .toString()),
                       SizedBox(height: 0.03.sh),
                       BottomSheetTextWidget(
                           textInfo: "İzne Çıkış",
@@ -163,7 +166,7 @@ class InkwellCard1 extends StatelessWidget {
             children: [
               // Sol üstteki metin
               Text(
-                'Yıllık İzin',
+                _permissionViewModel.myPermission!.permissionType.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0.sp,
@@ -172,7 +175,17 @@ class InkwellCard1 extends StatelessWidget {
               SizedBox(
                 height: 0.01.sh,
               ),
-              Text("18.02.2022 - 19.02.2022 (1 İş Günü)"),
+              Row(
+                children: [
+                  Text(_permissionViewModel.myPermission!.permissionStart
+                      .toString()
+                      .split(" ")[0]),
+                  Text(" - "),
+                  Text(_permissionViewModel.myPermission!.permissionEnd
+                      .toString()
+                      .split(" ")[0])
+                ],
+              ),
 
               SizedBox(
                 height: 0.01.sh,
@@ -207,7 +220,8 @@ class InkwellCard1 extends StatelessWidget {
 }
 
 class InkwellCard2 extends StatelessWidget {
-  const InkwellCard2({Key? key}) : super(key: key);
+  final PermissionViewModel _permissionViewModel = Get.find();
+  InkwellCard2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -254,13 +268,24 @@ class InkwellCard2 extends StatelessWidget {
                         ),
                         SizedBox(height: 0.04.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İzin Türü", dateInfo: "18.03.2023"),
+                            textInfo: "İzin Türü",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionType
+                                .toString()),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İzne Çıkış", dateInfo: "23.04.2023"),
+                            textInfo: "İzne Çıkış",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionEnd
+                                .toString()
+                                .split(" ")[0]),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
+                            textInfo: "İşe Başlama",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionStart
+                                .toString()
+                                .split(" ")[0]),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
                             textInfo: "İzinli Gün Toplamı",
@@ -268,8 +293,9 @@ class InkwellCard2 extends StatelessWidget {
                         SizedBox(height: 0.03.sh),
                         BottomSheetDesciription(
                           description: "Açıklama",
-                          descriptionFull:
-                              "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
+                          descriptionFull: _permissionViewModel
+                              .myPermission!.description
+                              .toString(),
                         ),
                         SizedBox(height: 0.03.sh),
                         ElevatedButton(
@@ -319,7 +345,7 @@ class InkwellCard2 extends StatelessWidget {
             children: [
               // Sol üstteki metin
               Text(
-                'Ücretsiz İzin Talebi',
+                _permissionViewModel.myPermission!.permissionType.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0.sp,
@@ -328,7 +354,17 @@ class InkwellCard2 extends StatelessWidget {
               SizedBox(
                 height: 0.01.sh,
               ),
-              Text("18.02.2022 - 19.02.2022 (1 İş Günü)"),
+              Row(
+                children: [
+                  Text(_permissionViewModel.myPermission!.permissionEnd
+                      .toString()
+                      .split(" ")[0]),
+                  Text(" - "),
+                  Text(_permissionViewModel.myPermission!.permissionStart
+                      .toString()
+                      .split(" ")[0]),
+                ],
+              ),
 
               SizedBox(
                 height: 0.01.sh,
@@ -359,7 +395,8 @@ class InkwellCard2 extends StatelessWidget {
 }
 
 class InkwellCard3 extends StatelessWidget {
-  const InkwellCard3({Key? key}) : super(key: key);
+  final PermissionViewModel _permissionViewModel = Get.find();
+  InkwellCard3({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -407,13 +444,24 @@ class InkwellCard3 extends StatelessWidget {
                         ),
                         SizedBox(height: 0.04.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İzin Türü", dateInfo: "18.03.2023"),
+                            textInfo: "İzin Türü",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionType
+                                .toString()),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İzne Çıkış", dateInfo: "23.04.2023"),
+                            textInfo: "İzne Çıkış",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionStart
+                                .toString()
+                                .split(" ")[0]),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
-                            textInfo: "İşe Başlama", dateInfo: "10.02.2022"),
+                            textInfo: "İşe Başlama",
+                            dateInfo: _permissionViewModel
+                                .myPermission!.permissionStart
+                                .toString()
+                                .split(" ")[0]),
                         SizedBox(height: 0.03.sh),
                         BottomSheetTextWidget(
                             textInfo: "İzinli Gün Toplamı",
@@ -421,8 +469,9 @@ class InkwellCard3 extends StatelessWidget {
                         SizedBox(height: 0.03.sh),
                         BottomSheetDesciription(
                           description: "Açıklama",
-                          descriptionFull:
-                              "Mattis elit et nulla nec sed feugiat ut blandit tellus condimentum.",
+                          descriptionFull: _permissionViewModel
+                              .myPermission!.description
+                              .toString(),
                         ),
                         SizedBox(height: 0.03.sh),
                       ]),
@@ -447,7 +496,7 @@ class InkwellCard3 extends StatelessWidget {
             children: [
               // Sol üstteki metin
               Text(
-                'Ücretsiz İzin Talebi',
+                _permissionViewModel.myPermission!.permissionType.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14.0.sp,
@@ -456,7 +505,17 @@ class InkwellCard3 extends StatelessWidget {
               SizedBox(
                 height: 0.01.sh,
               ),
-              Text("18.02.2022 - 19.02.2022 (1 İş Günü)"),
+              Row(
+                children: [
+                  Text(_permissionViewModel.myPermission!.permissionEnd
+                      .toString()
+                      .split(" ")[0]),
+                  Text(" - "),
+                  Text(_permissionViewModel.myPermission!.permissionStart
+                      .toString()
+                      .split(" ")[0]),
+                ],
+              ),
 
               SizedBox(
                 height: 0.01.sh,

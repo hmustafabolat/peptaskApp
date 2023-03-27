@@ -8,8 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../viewmodel/auth_viewmodel.dart';
 
-class AdminMainPage extends StatelessWidget {
-  AdminMainPage({Key? key}) : super(key: key);
+class UserMainPage extends StatelessWidget {
+  UserMainPage({Key? key}) : super(key: key);
 
   final PermissionViewModel _permissionViewModel = Get.find();
   @override

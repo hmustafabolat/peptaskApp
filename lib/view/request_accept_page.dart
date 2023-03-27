@@ -32,7 +32,7 @@ class RequestAcceptPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Get.to(AdminMainPage());
+                Get.to(UserMainPage());
               },
               child: Container(
                   margin: EdgeInsets.symmetric(vertical: 15, horizontal: 105).w,

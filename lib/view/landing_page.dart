@@ -16,7 +16,7 @@ class LandingPage extends StatelessWidget {
       if (_authViewModel.userModel.value?.id == null) {
         return UserLoginPage();
       } else {
-        return AdminMainPage();
+        return UserMainPage();
       }
     });
   }

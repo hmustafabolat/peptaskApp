@@ -12,13 +12,14 @@ class AuthViewModel extends GetxController {
   final signInFormGlobalKey = GlobalKey<FormState>();
   final signUpFormGlobalKey = GlobalKey<FormState>();
   String? name, email, password;
+  bool? isAdmin;
 
   Future<UserModel?> signIn() async {
     if (signInFormGlobalKey.currentState!.validate()) {
       signInFormGlobalKey.currentState!.save();
 
-      userModel.value =
-          await _repository.signIn(UserModel(email: email, password: password));
+      userModel.value = await _repository.signIn(
+          UserModel(email: email, password: password, isAdmin: isAdmin));
     }
   }
 
