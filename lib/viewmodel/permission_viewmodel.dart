@@ -21,12 +21,11 @@ class PermissionViewModel extends GetxController {
   PermissionModel? myPermission;
   List<PermissionModel> allPermissions = [];
   getAllPermission() async {
-    log("------");
     _permissionProvider.getAllPermission(_authViewModel.userModel.value?.id);
-    log("test");
+
     var result = await _permissionProvider
         .getAllPermission(_authViewModel.userModel.value?.id);
-    log(result[0].description.toString() + "--- --- - ");
+    log(result[0].description.toString());
 
     if (result != null) {
       myPermission = result[1];

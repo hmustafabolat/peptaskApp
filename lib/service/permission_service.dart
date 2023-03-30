@@ -31,29 +31,22 @@ class PermissionProvider extends GetxController {
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         tempList.add(PermissionModel(
-            description: doc["description"],
-            //     permissionStart: doc["permissionStart"],
-            //   permissionEnd: doc["permissionEnd"],
-            permissionStart: null,
-            permissionEnd: null,
-            permissionType: doc["permissionType"],
-            statu: doc["statu"],
-            userID: doc["userID"]));
+          description: doc["description"],
+          permissionStart: doc["permissionStart"] == null
+              ? null
+              : (doc["permissionStart"] as Timestamp).toDate(),
+          permissionEnd: doc["permissionEnd"] == null
+              ? null
+              : (doc["permissionEnd"] as Timestamp).toDate(),
+          permissionType: doc["permissionType"],
+          statu: doc["statu"],
+          userID: doc["userID"],
+        ));
 
         log(tempList.last.description.toString());
       });
     });
 
-    //   log("gel all permission başlangıcı");
-    //   try {
-    //     var result = await _firestore.collection('requests').doc(userId).get();
-
-    //     return PermissionModel.fromJson(result);
-    //   } catch (e) {
-    //     print('Error: PermissionProvider: getAllPermission: ${e.toString()}');
-    //     return null;
-    //   }
-    // }
     return tempList;
   }
 }
